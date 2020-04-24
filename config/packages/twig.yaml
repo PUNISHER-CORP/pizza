@@ -1,0 +1,7 @@
+twig:
+    cache: false
+    default_path: '%kernel.project_dir%/templates'
+    form_themes:
+        - 'bootstrap_4_layout.html.twig'
+        - '@VichUploader/Form/fields.html.twig'
+        - 'admin/common/_vich_upload_form_theme.html.twig'

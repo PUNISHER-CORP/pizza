@@ -1,0 +1,6 @@
+general:
+    required: 'Значение не должно быть пустым.'
+
+deal:
+  images:
+    allowedTypes: 'Разрешены только изображения с расширением (.jpeg, .jpg, .png, .gif)'

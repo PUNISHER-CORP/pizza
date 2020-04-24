@@ -1,0 +1,85 @@
+version: '3'
+
+services:
+
+  ## DATABASE
+
+    db:
+      build: docker/containers/mariadb
+      ports:
+        - 33005:3306
+      volumes:
+        - ./data/mariadb:/var/lib/mysql
+        - ./logs/mariadb:/var/log/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: app_db
+        MYSQL_USER: app_user
+        MYSQL_PASSWORD: app_pass
+
+## APPLICATION SERVER
+
+    www-php:
+        build:
+            context: docker/containers/apache2-php7
+            args:
+              USER_ID: ${UID-1000}
+              ADDITIONAL_VHOST_PORT: 8010
+        ports:
+            - 8005:80
+        environment:
+            XDEBUG_CONFIG: remote_host=${HOST_IP}
+        volumes:
+            - ./docker/logs/apache2-php7/:/var/log/apache2
+            - .:/var/www/html
+        links:
+            - db
+
+    php-cli:
+        build:
+           context: docker/containers/php7-cli
+           args:
+              USER_ID: ${UID-1000}
+        volumes:
+            - ~/.ssh:/home/php-user/.ssh
+            - ~/.gitconfig:/home/php-user/.gitconfig
+            - ~/.composer:/home/php-user/.composer
+            - .:/var/www/html
+            - $SSH_AUTH_SOCK:/ssh-agent
+        environment:
+            - SSH_AUTH_SOCK=/ssh-agent
+        links:
+          - db
+
+    php-cli-debug:
+        build:
+           context: docker/containers/php7-cli
+           args:
+              USER_ID: ${UID-1000}
+              DEBUG_MODE: 1
+        volumes:
+            - ~/.ssh:/home/php-user/.ssh
+            - ~/.gitconfig:/home/php-user/.gitconfig
+            - ~/.composer:/home/php-user/.composer
+            - .:/var/www/html
+        links:
+          - db
+
+    pma:
+      image: phpmyadmin/phpmyadmin
+      environment:
+        - PMA_HOST=db
+        - PMA_USER=root
+        - PMA_PASSWORD=root
+      ports:
+        - 9005:80
+      links:
+        - db
+
+    encore:
+      build:
+        context: docker/containers/encore
+        args:
+          USER_ID: ${UID-1000}
+      volumes:
+        - ./:/var/www/html

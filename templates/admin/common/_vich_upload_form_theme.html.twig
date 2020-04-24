@@ -1,0 +1,51 @@
+{% block vich_image_widget %}
+        <div class="vich-image">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_widget(form.file) }}
+                </div>
+            </div>
+            {% if image_uri %}
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-4">
+                        <div class="lightbox-gallery">
+                            <a href="{{ asset(image_uri) }}">
+                                <img src="{{ asset(image_uri) }}" alt="" class="img-fluid">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.delete is defined and image_uri is not null %}
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-6">
+                        {{ form_row(form.delete, { 'label': 'general.deletePicture'|trans }) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+{% endblock %}
+
+{% block vich_file_widget %}
+        <div class="vich-file">
+            {{ form_widget(form.file) }}
+            {% if object.file is defined and object.file is not empty %}
+                <div class="col-xl-12 pl-0" style="font-weight: 700;font-size: 15px">
+                    {{ object.originalName ?? object.file.fileName }}
+                </div>
+            {% endif %}
+
+            {% if download_uri %}
+                <a download href="{{ download_uri }}">{{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}</a>
+            {% endif %}
+
+            {% if form.delete is defined %}
+                {{ form_widget(form.delete, {attr: {class: 'delete-file-checkbox'}}) }}
+            {% endif %}
+        </div>
+        <script>
+            $(document).ready(function () {
+               $('.delete-file-checkbox').prop('checked',false);
+            });
+        </script>
+{% endblock %}
