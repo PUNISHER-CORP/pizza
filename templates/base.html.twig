@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
-        <link href="{{ asset('adminLTE/css/adminlte.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('custom/css/main.css') }}" rel="stylesheet" type="text/css" />
-        {% block stylesheets %}{% endblock %}
-    </head>
-    {% block body %}
-    <body>
-        {% block header %}
-{#            {% include 'admin/structure/header.html.twig' %}#}
-        {% endblock header %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
 
-{#        {% include 'admin/structure/footer.html.twig' %}#}
+    <link rel="stylesheet" href="{{ asset('adminLTE/plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+    <link href="{{ asset('adminLTE/css/adminlte.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('custom/css/main.css') }}" rel="stylesheet" type="text/css" />
+    {% block stylesheets %}{% endblock %}
+</head>
+{% block body %}
+    <body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+            {% block header %}
+                {% include 'admin/structure/header.html.twig' %}
+            {% endblock header %}
+
+            {% block sidebar %}
+                {% include 'admin/structure/sidebar.html.twig' %}
+            {% endblock %}
+
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            {% block footer %}
+                {% include 'admin/structure/footer.html.twig' %}
+            {% endblock %}
 
 
-        <script src="{{ asset('adminLTE/js/adminlte.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('custom/js/add-collection-widget.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('adminLTE/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+            <script src="{{ asset('adminLTE/js/adminlte.min.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('custom/js/add-collection-widget.js') }}" type="text/javascript"></script>
 
-        <script>
-            $(document).on("change", ".custom-file-input", function(){
-                let fileName = $(this).val().split('\\').pop();
-                $(this).next('.custom-file-label').addClass("selected").html(fileName);
-            });
-        </script>
-        {% block javascripts %}
-        {% endblock %}
-
+            <script>
+                $(document).on("change", ".custom-file-input", function(){
+                    let fileName = $(this).val().split('\\').pop();
+                    $(this).next('.custom-file-label').addClass("selected").html(fileName);
+                });
+            </script>
+            {% block javascripts %}
+            {% endblock %}
+        </div>
     </body>
-    {% endblock %}
+{% endblock %}
 </html>

@@ -1,71 +1,13 @@
-<div id="kt_header" class="kt-header  kt-header--fixed " data-ktheader-minimize="on">
-    <div class="kt-container ">
-
-        <!-- begin:: LOGO -->
-        <div class="kt-header__brand   kt-grid__item" id="kt_header_brand">
-            <a class="kt-header__brand-logo" href="?page=index">
-                <img alt="Logo" src="{{ asset('custom/images/logos/logo-4.png') }}" class="kt-header__brand-logo-default" />
-                <img alt="Logo" src="{{ asset('custom/images/logos/logo-4-sm.png') }}" class="kt-header__brand-logo-sticky" />
-            </a>
-        </div>
-        <!-- end:: LOGO -->
-
-        <!-- begin: Header Menu -->
-        <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
-        <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
-            <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile ">
-                <ul class="kt-menu__nav ">
-                    <li class="kt-menu__item  kt-menu__item--open kt-menu__item--here kt-menu__item--submenu kt-menu__item--rel kt-menu__item--open kt-menu__item--here" data-ktmenu-submenu-toggle="click" aria-haspopup="true">
-                        <a href="javascript:" class="kt-menu__link kt-menu__toggle">
-                            <span class="kt-menu__link-text">{{ 'admin.menu.dashboard'|trans }}</span>
-                        </a>
-                        <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
-                            <ul class="kt-menu__subnav">
-                                <li class="kt-menu__item  kt-menu__item--active " aria-haspopup="true">
-                                    <a href="{{ path('admin_statistic_general') }}" class="kt-menu__link ">
-                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                        <span class="kt-menu__link-text">Общая</span>
-                                    </a>
-                                </li>
-                                <li class="kt-menu__item " aria-haspopup="true">
-                                    <a href="{{ path('admin_statistic_currency') }}" class="kt-menu__link ">
-                                        <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                        <span class="kt-menu__link-text">Валютная пара</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="kt-menu__item">
-                        <a href="{{ path('admin_currency_index') }}" class="kt-menu__link">
-                            <span class="text-white">{{ 'admin.menu.currency'|trans }}</span>
-                        </a>
-                    </li>
-                    <li class="kt-menu__item">
-                        <a href="{{ path('admin_deal_index') }}" class="kt-menu__link">
-                            <span class="text-white">{{ 'admin.menu.deal'|trans }}</span>
-                        </a>
-                    </li>
-                    <li class="kt-menu__item">
-                        <a href="{{ path('admin_broker_index') }}" class="kt-menu__link">
-                            <span class="text-white">{{ 'admin.menu.broker'|trans }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="kt-header__topbar kt-grid__item">
-            <div class="kt-header__topbar-item kt-header__topbar-item--user">
-                <div class="kt-header__topbar-wrapper dropdown">
-                    <span class="menu-broker-text dropdown-toggle dropdown-broker-toggle" id="dropdownBroker" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ render(controller('App\\Controller\\Admin\\AppController::getActiveBrokerByUser')) }}
-                    </span>
-                    <div class="dropdown-menu" aria-labelledby="dropdownBroker">
-                        {{ render(controller('App\\Controller\\Admin\\AppController::getInactiveBrokersListByUser')) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Contact</a>
+        </li>
+    </ul>
+</nav>

@@ -9,6 +9,7 @@
         "ext-json": "*",
         "beberlei/doctrineextensions": "^1.2",
         "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "knplabs/doctrine-behaviors": "^2.0",
         "knplabs/knp-paginator-bundle": "^5.1",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.0.*",
