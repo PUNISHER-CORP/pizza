@@ -1,13 +1,14 @@
 <ul class="nav nav-tabs" id="myTab-{{ fieldName }}" role="tablist">
     {% for translation in translations %}
+        {% dump(translation) %}
         <li class="nav-item">
-            <a class="nav-link {% if loop.first %}active{% endif %}" id="tab-{{ loop.index }}" data-toggle="tab" href="#content-{{ fieldName }}-{{ loop.index }}" role="tab" aria-controls="home" aria-selected="true">{{ translation.locale }}</a>
+            <a class="nav-link {% if loop.first %}active{% endif %}" id="tab-{{ loop.index }}" data-toggle="tab" href="#content-{{ translation.id }}-{{ fieldName }}-{{ loop.index }}" role="tab" aria-controls="home" aria-selected="true">{{ translation.locale }}</a>
         </li>
     {% endfor %}
 </ul>
 
 <div class="tab-content tab-content-translation" id="myTabContent-{{ fieldName }}">
     {% for translation in translations %}
-        <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="content-{{ fieldName }}-{{ loop.index }}" role="tabpanel" aria-labelledby="home-tab">{{ attribute(translation, fieldName) }}</div>
+        <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="content-{{ translation.id }}-{{ fieldName }}-{{ loop.index }}" role="tabpanel" aria-labelledby="home-tab">{{ attribute(translation, fieldName) }}</div>
     {% endfor %}
 </div>

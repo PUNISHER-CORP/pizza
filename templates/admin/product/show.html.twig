@@ -32,8 +32,8 @@
                     <tr>
                         <th>{{ 'product.categories'|trans }}</th>
                         <td>
-                            {% for category in product.categories %}
-                                {{ category.name }}
+                            {% for productsCategorie in product.productsCategories %}
+                                {{ productsCategorie.category.name }}
                                 {% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </td>

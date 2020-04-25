@@ -3,9 +3,7 @@
 namespace App\Form\Admin;
 
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
-use App\Entity\Admin\Category;
 use App\Entity\Admin\Product;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -43,15 +41,13 @@ class ProductType extends AbstractType
                 'allow_delete' => true,
                 'translation_domain' => 'messages',
             ])
-            ->add('categories', CollectionType::class , [
-                'entry_type'   => EntityType::class,
-                'entry_options' => [
-                    'class' => Category::class,
-                    'choice_label' => 'name',
-                    'label' => false
-                ],
+            ->add('productsCategories', CollectionType::class , [
+                'entry_type'   => ProductsCategoriesType::class,
                 'label' => 'product.categories',
                 'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
             ])
             ->add('productsDimensions', CollectionType::class , [
                 'entry_type'   => DimensionsProductsType::class,

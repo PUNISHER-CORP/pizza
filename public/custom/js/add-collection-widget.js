@@ -11,7 +11,7 @@ function initializeCollection (ulClass, itemClass) {
     });
 
     $collectionHolder.append($newLinkLi);
-    $collectionHolder.data('index', $collectionHolder.find('input').length);
+    $collectionHolder.data('index', $collectionHolder.find('select').length);
 
     $addTagButton.on('click', function (e) {
         addTagForm($collectionHolder, $newLinkLi, itemClass);
@@ -21,6 +21,7 @@ function initializeCollection (ulClass, itemClass) {
 function addTagForm($collectionHolder, $newLinkLi, itemClass) {
     var prototype = $collectionHolder.data('prototype');
     var index = $collectionHolder.data('index');
+
     var newForm = prototype;
     newForm = newForm.replace(/__name__label__/g, index);
     newForm = newForm.replace(/__name__/g, index);

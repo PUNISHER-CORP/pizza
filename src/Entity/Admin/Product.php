@@ -28,7 +28,7 @@ class Product implements TranslatableInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -39,25 +39,25 @@ class Product implements TranslatableInterface
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTimeInterface|null
      */
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Category", inversedBy="products")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\ProductsCategories", mappedBy="product", cascade={"persist"}, orphanRemoval=true)
      */
-    private $categories;
+    private $productsCategories;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Admin\DimensionsProducts", mappedBy="product", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\DimensionsProducts", mappedBy="product", cascade={"persist"}, orphanRemoval=true)
      */
     private $productsDimensions;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->productsCategories = new ArrayCollection();
         $this->productsDimensions = new ArrayCollection();
     }
 
@@ -91,7 +91,7 @@ class Product implements TranslatableInterface
         return $this->image;
     }
 
-    public function setImage(string $image): void
+    public function setImage(?string $image): void
     {
         $this->image = $image;
     }
@@ -113,24 +113,28 @@ class Product implements TranslatableInterface
     /**
      * @return Collection|Category[]
      */
-    public function getCategories(): Collection
+    public function getProductsCategories(): Collection
     {
-        return $this->categories;
+        return $this->productsCategories;
     }
 
-    public function addCategory(Category $category): self
+    public function addProductsCategory(ProductsCategories $productsCategories): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        if (!$this->productsCategories->contains($productsCategories)) {
+            $this->productsCategories[] = $productsCategories;
+            $productsCategories->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
+    public function removeProductsCategory(ProductsCategories $productsCategories): self
     {
-        if ($this->categories->contains($category)) {
-            $this->categories->removeElement($category);
+        if ($this->productsCategories->contains($productsCategories)) {
+            $this->productsCategories->removeElement($productsCategories);
+            if ($productsCategories->getProduct() === $this) {
+                $productsCategories->setProduct(null);
+            }
         }
 
         return $this;
@@ -158,7 +162,9 @@ class Product implements TranslatableInterface
     {
         if ($this->productsDimensions->contains($productsDimensions)) {
             $this->productsDimensions->removeElement($productsDimensions);
-            $productsDimensions->setProduct(null);
+            if ($productsDimensions->getProduct() === $this) {
+                $productsDimensions->setProduct(null);
+            }
         }
 
         return $this;

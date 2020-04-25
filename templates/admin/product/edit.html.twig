@@ -1,6 +1,6 @@
 {% extends 'admin/product/product_base.html.twig' %}
 
-{% form_theme form.categories 'admin/product/_categories_collection.html.twig' %}
+{% form_theme form.productsCategories 'admin/product/_categories_collection.html.twig' %}
 {% form_theme form.productsDimensions 'admin/product/_dimensions_collection.html.twig' %}
 
 {% block title %}{{ 'product.edit'|trans }}{% endblock %}
@@ -15,7 +15,7 @@
                 {{ form_row(form.translations) }}
                 <hr>
                 {{ form_row(form.imageFile) }}
-                {{ form_row(form.categories) }}
+                {{ form_row(form.productsCategories) }}
                 {{ form_row(form.productsDimensions) }}
 
                 <div class="d-flex">

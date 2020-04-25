@@ -8,9 +8,11 @@ ul.categories .category__item .delete__button{
     margin-left: 15px;
 }
 
+ul.categories .category__item > div,
 ul.dimensions .dimension__item > div {
     width: 100%;
 }
+ul.categories .category__item .delete__button,
 ul.dimensions .dimension__item .delete__button {
     margin-left: 15px;
     max-height: 38px;
@@ -31,4 +33,8 @@ ul.dimensions .dimension__item .delete__button {
     background-color: #d1ecf1;
     padding: 15px;
     border-radius: 5px;
+}
+
+.error-tab {
+    color: red!important;
 }

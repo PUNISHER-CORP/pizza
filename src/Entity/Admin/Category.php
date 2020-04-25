@@ -24,13 +24,13 @@ class Category implements TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\ProductsCategories", mappedBy="category", cascade={"persist"})
      */
-    private $products;
+    private $categoriesProducts;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->categoriesProducts = new ArrayCollection();
     }
 
     public function __call($method, $arguments)
@@ -56,26 +56,25 @@ class Category implements TranslatableInterface
     /**
      * @return Collection|Product[]
      */
-    public function getProducts(): Collection
+    public function getCategoriesProduct(): Collection
     {
-        return $this->products;
+        return $this->categoriesProducts;
     }
 
-    public function addProduct(Product $product): self
+    public function addCategoriesProduct(ProductsCategories $categoriesProducts): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
-            $product->addCategory($this);
+        if (!$this->categoriesProducts->contains($categoriesProducts)) {
+            $this->categoriesProducts[] = $categoriesProducts;
+            $categoriesProducts->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function removeCategoriesProduct(ProductsCategories $categoriesProducts): self
     {
-        if ($this->products->contains($product)) {
-            $this->products->removeElement($product);
-            $product->removeCategory($this);
+        if ($this->categoriesProducts->contains($categoriesProducts)) {
+            $this->categoriesProducts->removeElement($categoriesProducts);
         }
 
         return $this;
