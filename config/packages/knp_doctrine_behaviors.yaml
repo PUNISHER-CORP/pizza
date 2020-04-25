@@ -1,7 +1,0 @@
-knp_doctrine_behaviors:
-    blameable: false
-    geocodable: false
-    loggable: false
-    sluggable: false
-    soft_deletable: false
-    translatable: true

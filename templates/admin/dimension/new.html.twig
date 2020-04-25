@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'dimension.add'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <h1>{{ 'dimension.add'|trans }}</h1>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <a href="{{ path('admin_dimension_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                <button class="btn btn-success">{{ 'global.save'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

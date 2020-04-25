@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'dimension.dimensions'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-xl-12 d-flex mb-3">
+        <h1>{{ 'dimension.dimensions'|trans }}</h1>
+        <div class="ml-auto">
+            <a href="{{ path('admin_dimension_new') }}" class="btn btn-success">{{ 'global.add'|trans }}</a>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>{{ 'dimension.name'|trans }}</th>
+                        <th class="w-25">{{ 'global.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for dimension in pagination %}
+                        <tr>
+                            <td>{{ dimension.id }}</td>
+                            <td>{{ dimension.name }}</td>
+                            <td>
+                                <a href="{{ path('admin_dimension_show', {'id': dimension.id}) }}" class="btn btn-success">{{ 'global.show'|trans }}</a>
+                                <a href="{{ path('admin_dimension_edit', {'id': dimension.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">{{ 'global.emptyList'|trans }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0">
+                    {{ knp_pagination_render(pagination) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

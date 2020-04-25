@@ -10,9 +10,9 @@ use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\Admin\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Admin\DimensionRepository")
  */
-class Category implements TranslatableInterface
+class Dimension implements TranslatableInterface
 {
     use TranslatableTrait;
 
@@ -24,7 +24,7 @@ class Category implements TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", inversedBy="dimensions")
      */
     private $products;
 
@@ -32,7 +32,6 @@ class Category implements TranslatableInterface
     {
         $this->products = new ArrayCollection();
     }
-
     public function __call($method, $arguments)
     {
         return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
@@ -60,7 +59,6 @@ class Category implements TranslatableInterface
     {
         if (!$this->products->contains($product)) {
             $this->products[] = $product;
-            $product->addCategory($this);
         }
 
         return $this;
@@ -70,7 +68,6 @@ class Category implements TranslatableInterface
     {
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
-            $product->removeCategory($this);
         }
 
         return $this;

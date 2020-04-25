@@ -2,9 +2,9 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        deals_images:
-            uri_prefix: /uploads/images/deals
-            upload_destination: '%kernel.project_dir%/public/uploads/images/deals'
+        product_image:
+            uri_prefix: /uploads/images/products
+            upload_destination: '%kernel.project_dir%/public/uploads/images/products'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
             delete_on_update: true
             delete_on_remove: true

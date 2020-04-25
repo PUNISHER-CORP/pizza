@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'dimension.dimension'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ 'dimension.dimension'|trans }}</h1>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">{{ 'global.id'|trans }}</th>
+                        <th>{{ 'dimension.name'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ dimension.id }}</td>
+                        <td>{{ dimension.name }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <a href="{{ path('admin_dimension_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                <a href="{{ path('admin_dimension_edit', {'id': dimension.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

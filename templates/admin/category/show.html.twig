@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'category.category'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ 'category.category'|trans }}</h1>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">{{ 'global.id'|trans }}</th>
+                        <th>{{ 'category.name'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <a href="{{ path('admin_category_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
