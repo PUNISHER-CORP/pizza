@@ -24,6 +24,7 @@ ul.dimensions .dimension__item .delete__button {
     border: 1px solid #dee2e6;
     border-top: none;
     padding: 20px 20px;
+    background-color: #fff;
 }
 
 .collection-item {

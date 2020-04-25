@@ -1,24 +1,46 @@
 {% block a2lix_translations_widget %}
     {{ form_errors(form) }}
-    <div class="a2lix_translations card-header d-flex p-0">
-        <ul class="a2lix_translationsLocales nav nav-pills ml-auto p-2">
-            {% for translationsFields in form %}
-                {% set locale = translationsFields.vars.name %}
-                <li class="nav-item">
-                    <a href="#{{ translationsFields.vars.id }}_a2lix_translations-fields" class="nav-link {% if app.request.locale == locale %}active{% endif %}" data-toggle="tab" role="tab">
-                        {{ translationsFields.vars.label|default(locale|humanize)|trans }}
-                        {% if form.vars.default_locale == locale %}{% endif %}
-                        {% if translationsFields.vars.required %}*{% endif %}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="a2lix_translationsFields mt-3 tab-content">
+{#    <div class="a2lix_translations card-header d-flex p-0">#}
+{#        <ul class="a2lix_translationsLocales nav nav-pills ml-auto p-2">#}
+{#            {% for translationsFields in form %}#}
+{#                {% set locale = translationsFields.vars.name %}#}
+{#                <li class="nav-item">#}
+{#                    <a href="#{{ translationsFields.vars.id }}_a2lix_translations-fields" class="nav-link {% if app.request.locale == locale %}active{% endif %}" data-toggle="tab" role="tab">#}
+{#                        {{ translationsFields.vars.label|default(locale|humanize)|trans }}#}
+{#                        {% if form.vars.default_locale == locale %}{% endif %}#}
+{#                        {% if translationsFields.vars.required %}*{% endif %}#}
+{#                    </a>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+{#    <div class="a2lix_translationsFields mt-3 tab-content">#}
+{#        {% for translationsFields in form %}#}
+{#            {% set locale = translationsFields.vars.name %}#}
+
+{#            <div id="{{ translationsFields.vars.id }}_a2lix_translations-fields" class="tab-pane {% if app.request.locale == locale %}show active{% endif %} {% if not form.vars.valid %}sonata-ba-field-error{% endif %}" role="tabpanel">#}
+{#                {{ form_errors(translationsFields) }}#}
+{#                {{ form_widget(translationsFields) }}#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+    <ul class="nav nav-tabs" role="tablist">
         {% for translationsFields in form %}
             {% set locale = translationsFields.vars.name %}
+            <li class="nav-item">
+                <a href="#{{ translationsFields.vars.id }}_a2lix_translations-fields" class="nav-link {% if app.request.locale == locale %}active{% endif %}" data-toggle="tab" role="tab">
+                    {{ translationsFields.vars.label|default(locale|humanize)|trans }}
+                    {% if form.vars.default_locale == locale %}{% endif %}
+                    {% if translationsFields.vars.required %}*{% endif %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 
-            <div id="{{ translationsFields.vars.id }}_a2lix_translations-fields" class="tab-pane {% if app.request.locale == locale %}show active{% endif %} {% if not form.vars.valid %}sonata-ba-field-error{% endif %}" role="tabpanel">
+    <div class="tab-content tab-content-translation">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+            <div id="{{ translationsFields.vars.id }}_a2lix_translations-fields" class="tab-pane fade {% if app.request.locale == locale %}show active{% endif %} {% if not form.vars.valid %}sonata-ba-field-error{% endif %}" role="tabpanel">
                 {{ form_errors(translationsFields) }}
                 {{ form_widget(translationsFields) }}
             </div>
