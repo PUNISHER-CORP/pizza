@@ -26,6 +26,18 @@ dimension:
   add: 'Добавление величины'
   edit: 'Редактирование величины'
 
+product:
+  products: 'Продукты'
+  product: 'Продукт'
+  name: 'Название'
+  description: 'Описание'
+  mainImage: 'Изображение'
+  price: 'Цена'
+  categories: 'Категории'
+  dimensions: 'Величины'
+  add: 'Добавление продукта'
+  edit: 'Редактирование продукта'
+
 email:
   confirmRegistration:
     subject: 'Подтверждение регистрации'

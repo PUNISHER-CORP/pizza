@@ -24,7 +24,7 @@ class Dimension implements TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", inversedBy="dimensions")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", mappedBy="dimensions")
      */
     private $products;
 
@@ -32,6 +32,7 @@ class Dimension implements TranslatableInterface
     {
         $this->products = new ArrayCollection();
     }
+
     public function __call($method, $arguments)
     {
         return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);

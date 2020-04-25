@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dimension/dimension_base.html.twig' %}
 
 {% block title %}{{ 'dimension.dimension'|trans }}{% endblock %}
 
@@ -8,16 +8,14 @@
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th style="width: 10px">{{ 'global.id'|trans }}</th>
-                        <th>{{ 'dimension.name'|trans }}</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     <tr>
+                        <th class="w-25">{{ 'global.id'|trans }}</th>
                         <td>{{ dimension.id }}</td>
-                        <td>{{ dimension.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'dimension.name'|trans }}</th>
+                        <td>{{ renderTranslationField(dimension, 'name')|raw }}</td>
                     </tr>
                     </tbody>
                 </table>

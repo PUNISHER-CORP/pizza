@@ -1,0 +1,17 @@
+{% block _product_categories_row %}
+    <div class="form-group{% if form.vars.errors|length > 0 %} has-error{% endif %}">
+        {{ form_label(form) }}
+        <ul class="categories list-unstyled" data-prototype="{{ form_widget(form.vars.prototype)|e }}">
+            {% for category in form %}
+                <li class="category__item">
+                    {{ form_row(category) }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% do form.setRendered %}
+    </div>
+{% endblock %}
+
+{% block _product_categories_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}

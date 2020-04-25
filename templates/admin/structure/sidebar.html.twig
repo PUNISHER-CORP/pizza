@@ -20,7 +20,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('admin_category_index') }}" class="nav-link active">
+                    <a href="{{ path('admin_category_index') }}" class="nav-link menu__categories">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             {{ 'category.catogories'|trans }}
@@ -28,10 +28,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('admin_dimension_index') }}" class="nav-link active">
+                    <a href="{{ path('admin_dimension_index') }}" class="nav-link menu__dimensions">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             {{ 'dimension.dimensions'|trans }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('admin_product_index') }}" class="nav-link menu__products">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            {{ 'product.products'|trans }}
                         </p>
                     </a>
                 </li>

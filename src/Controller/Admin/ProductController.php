@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Admin\Product;
 use App\Form\Admin\ProductType;
 use App\Repository\Admin\ProductRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,13 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductController extends AbstractController
 {
+    const LIMIT_PER_PAGE = 20;
+
     /**
      * @Route("/", name="admin_product_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(Request $request, ProductRepository $productRepository, PaginatorInterface $paginator): Response
     {
+        $pagination = $paginator->paginate(
+            $productRepository->findAll(),
+            $request->query->getInt('page', 1),
+            self::LIMIT_PER_PAGE
+        );
+
         return $this->render('admin/product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+            'pagination' => $pagination
         ]);
     }
 

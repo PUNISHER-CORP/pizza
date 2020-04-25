@@ -1,11 +1,39 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/product/product_base.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% form_theme form.categories 'admin/product/_categories_collection.html.twig' %}
+{% form_theme form.dimensions 'admin/product/_dimensions_collection.html.twig' %}
 
-{% block body %}
-    <h1>Create new Product</h1>
+{% block title %}{{ 'product.add'|trans }}{% endblock %}
 
-    {{ include('admin_product/_form.html.twig') }}
+{% block content %}
+    <div class="col-12">
+        <h1>{{ 'product.add'|trans }}</h1>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
 
-    <a href="{{ path('admin_product_index') }}">back to list</a>
+                {{ form_row(form.translations) }}
+                <hr>
+                {{ form_row(form.imageFile) }}
+                {{ form_row(form.categories) }}
+                {{ form_row(form.dimensions) }}
+
+                <a href="{{ path('admin_product_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                <button class="btn btn-success">{{ 'global.save'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('custom/js/add-collection-widget.js') }}" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            initializeCollection('categories', 'category__item');
+            initializeCollection('dimensions', 'dimension__item');
+        });
+    </script>
 {% endblock %}

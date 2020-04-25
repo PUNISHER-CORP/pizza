@@ -48,6 +48,11 @@ class Category implements TranslatableInterface
         return $this->__call('getName', []);
     }
 
+    public function setName($name): ?string
+    {
+        return $this->__call('setName', [$name]);
+    }
+
     /**
      * @return Collection|Product[]
      */

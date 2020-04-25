@@ -13,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Admin\ProductRepository")
+ * @Vich\Uploadable
  */
 class Product implements TranslatableInterface
 {
@@ -24,11 +25,6 @@ class Product implements TranslatableInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $price;
 
     /**
      * @var string
@@ -55,7 +51,7 @@ class Product implements TranslatableInterface
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Dimension", mappedBy="products")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Dimension", inversedBy="products")
      */
     private $dimensions;
 
@@ -80,21 +76,14 @@ class Product implements TranslatableInterface
         return $this->__call('getDescription', []);
     }
 
+    public function getPrice(): ?string
+    {
+        return $this->__call('getPrice', []);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): self
-    {
-        $this->price = $price;
-
-        return $this;
     }
 
     public function getImage(): ?string

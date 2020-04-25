@@ -30,6 +30,12 @@ class ProductTranslation implements TranslationInterface
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $price;
+
+
     public function getName(): ?string
     {
         return $this->name;
@@ -54,4 +60,15 @@ class ProductTranslation implements TranslationInterface
         return $this;
     }
 
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
 }

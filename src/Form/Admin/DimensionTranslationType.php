@@ -34,6 +34,9 @@ class DimensionTranslationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Dimension::class,
+            'attr' => [
+                'novalidate' => 'novalidate'
+            ],
         ]);
     }
 }
