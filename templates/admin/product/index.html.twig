@@ -19,7 +19,6 @@
                         <th style="width: 10px">{{ 'global.id'|trans }}</th>
                         <th>{{ 'product.name'|trans }}</th>
                         <th>{{ 'product.description'|trans }}</th>
-                        <th>{{ 'product.price'|trans }}</th>
                         <th class="w-25">{{ 'global.actions'|trans }}</th>
                     </tr>
                     </thead>
@@ -29,7 +28,6 @@
                             <td>{{ product.id }}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.description }}</td>
-                            <td>{{ product.price }}</td>
                             <td>
                                 <a href="{{ path('admin_product_show', {'id': product.id}) }}" class="btn btn-success">{{ 'global.show'|trans }}</a>
                                 <a href="{{ path('admin_product_edit', {'id': product.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>

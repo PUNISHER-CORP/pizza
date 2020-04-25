@@ -7,7 +7,7 @@ function initializeCollection (ulClass, itemClass) {
     let $collectionLi = $collectionHolder.find('li');
 
     $collectionLi.each(function () {
-        addTagFormDeleteLink($(this));
+        addTagFormDeleteLink($(this), itemClass);
     });
 
     $collectionHolder.append($newLinkLi);
@@ -26,14 +26,17 @@ function addTagForm($collectionHolder, $newLinkLi, itemClass) {
     newForm = newForm.replace(/__name__/g, index);
 
     $collectionHolder.data('index', index + 1);
-    var $newFormLi = $('<li class="' + itemClass + '"></li>').append(newForm);
+    var $newFormLi = $('<li class="' + itemClass + ' collection-item"></li>').append(newForm);
     $newLinkLi.before($newFormLi);
-    addTagFormDeleteLink($newFormLi);
+    addTagFormDeleteLink($newFormLi, itemClass);
 }
 
-function addTagFormDeleteLink($tagFormLi) {
+function addTagFormDeleteLink($tagFormLi, itemClass) {
     var $removeFormButton = $('<button type="button" class="btn btn-danger delete__button">Удалить</button>');
-    $tagFormLi.append($removeFormButton);
+
+    if($tagFormLi.hasClass(itemClass)){
+        $tagFormLi.append($removeFormButton);
+    }
 
     $removeFormButton.on('click', function(e) {
         $tagFormLi.remove();

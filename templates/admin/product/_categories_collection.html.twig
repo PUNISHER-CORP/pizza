@@ -3,7 +3,7 @@
         {{ form_label(form) }}
         <ul class="categories list-unstyled" data-prototype="{{ form_widget(form.vars.prototype)|e }}">
             {% for category in form %}
-                <li class="category__item">
+                <li class="category__item collection-item">
                     {{ form_row(category) }}
                 </li>
             {% endfor %}

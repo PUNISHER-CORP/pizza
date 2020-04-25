@@ -51,14 +51,14 @@ class Product implements TranslatableInterface
     private $categories;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Dimension", inversedBy="products")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\DimensionsProducts", mappedBy="product", cascade={"persist"})
      */
-    private $dimensions;
+    private $productsDimensions;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->dimensions = new ArrayCollection();
+        $this->productsDimensions = new ArrayCollection();
     }
 
     public function __call($method, $arguments)
@@ -139,26 +139,26 @@ class Product implements TranslatableInterface
     /**
      * @return Collection|Dimension[]
      */
-    public function getDimensions(): Collection
+    public function getProductsDimensions(): Collection
     {
-        return $this->dimensions;
+        return $this->productsDimensions;
     }
 
-    public function addDimension(Dimension $dimension): self
+    public function addProductsDimension(DimensionsProducts $productsDimensions): self
     {
-        if (!$this->dimensions->contains($dimension)) {
-            $this->dimensions[] = $dimension;
-            $dimension->addProduct($this);
+        if (!$this->productsDimensions->contains($productsDimensions)) {
+            $this->productsDimensions[] = $productsDimensions;
+            $productsDimensions->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeDimension(Dimension $dimension): self
+    public function removeProductsDimension(DimensionsProducts $productsDimensions): self
     {
-        if ($this->dimensions->contains($dimension)) {
-            $this->dimensions->removeElement($dimension);
-            $dimension->removeProduct($this);
+        if ($this->productsDimensions->contains($productsDimensions)) {
+            $this->productsDimensions->removeElement($productsDimensions);
+            $productsDimensions->setProduct(null);
         }
 
         return $this;

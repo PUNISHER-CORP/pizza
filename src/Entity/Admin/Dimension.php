@@ -24,13 +24,13 @@ class Dimension implements TranslatableInterface
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Admin\Product", mappedBy="dimensions")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\DimensionsProducts", mappedBy="dimension", cascade={"persist"})
      */
-    private $products;
+    private $dimensionsProducts;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->dimensionsProducts = new ArrayCollection();
     }
 
     public function __call($method, $arguments)
@@ -49,26 +49,28 @@ class Dimension implements TranslatableInterface
     }
 
     /**
-     * @return Collection|Product[]
+     * @return Collection|Dimension[]
      */
-    public function getProducts(): Collection
+    public function getDimensionsProducts(): Collection
     {
-        return $this->products;
+        return $this->dimensionsProducts;
     }
 
-    public function addProduct(Product $product): self
+    public function addDimensionsProduct(DimensionsProducts $dimensionsProducts): self
     {
-        if (!$this->products->contains($product)) {
-            $this->products[] = $product;
+        if (!$this->dimensionsProducts->contains($dimensionsProducts)) {
+            $this->dimensionsProducts[] = $dimensionsProducts;
+            $dimensionsProducts->setDimension($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function removeDimensionsProduct(DimensionsProducts $dimensionsProducts): self
     {
-        if ($this->products->contains($product)) {
-            $this->products->removeElement($product);
+        if ($this->dimensionsProducts->contains($dimensionsProducts)) {
+            $this->dimensionsProducts->removeElement($dimensionsProducts);
+            $dimensionsProducts->setDimension(null);
         }
 
         return $this;

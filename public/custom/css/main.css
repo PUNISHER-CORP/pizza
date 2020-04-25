@@ -4,9 +4,16 @@ ul.dimensions .dimension__item {
     margin-bottom: 15px;
 }
 
-ul.categories .category__item .delete__button,
+ul.categories .category__item .delete__button{
+    margin-left: 15px;
+}
+
+ul.dimensions .dimension__item > div {
+    width: 100%;
+}
 ul.dimensions .dimension__item .delete__button {
     margin-left: 15px;
+    max-height: 38px;
 }
 
 .product__show .product__image {
@@ -17,4 +24,10 @@ ul.dimensions .dimension__item .delete__button {
     border: 1px solid #dee2e6;
     border-top: none;
     padding: 20px 20px;
+}
+
+.collection-item {
+    background-color: #d1ecf1;
+    padding: 15px;
+    border-radius: 5px;
 }

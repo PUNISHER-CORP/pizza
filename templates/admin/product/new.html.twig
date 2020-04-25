@@ -1,7 +1,7 @@
 {% extends 'admin/product/product_base.html.twig' %}
 
 {% form_theme form.categories 'admin/product/_categories_collection.html.twig' %}
-{% form_theme form.dimensions 'admin/product/_dimensions_collection.html.twig' %}
+{% form_theme form.productsDimensions 'admin/product/_dimensions_collection.html.twig' %}
 
 {% block title %}{{ 'product.add'|trans }}{% endblock %}
 
@@ -16,7 +16,7 @@
                 <hr>
                 {{ form_row(form.imageFile) }}
                 {{ form_row(form.categories) }}
-                {{ form_row(form.dimensions) }}
+                {{ form_row(form.productsDimensions) }}
 
                 <a href="{{ path('admin_product_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
                 <button class="btn btn-success">{{ 'global.save'|trans }}</button>

@@ -1,10 +1,10 @@
-{% block _product_dimensions_row %}
+{% block _product_productsDimensions_row %}
     <div class="form-group{% if form.vars.errors|length > 0 %} has-error{% endif %}">
         {{ form_label(form) }}
         <ul class="dimensions list-unstyled" data-prototype="{{ form_widget(form.vars.prototype)|e }}">
-            {% for category in form %}
-                <li class="dimension__item">
-                    {{ form_row(category) }}
+            {% for dimension in form %}
+                <li class="dimension__item collection-item">
+                    {{ form_row(dimension) }}
                 </li>
             {% endfor %}
         </ul>
@@ -12,6 +12,6 @@
     </div>
 {% endblock %}
 
-{% block _product_dimensions_entry_row %}
+{% block _product_productsDimensions_entry_row %}
     {{ form_widget(form) }}
 {% endblock %}

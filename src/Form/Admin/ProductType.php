@@ -4,12 +4,10 @@ namespace App\Form\Admin;
 
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Admin\Category;
-use App\Entity\Admin\Dimension;
 use App\Entity\Admin\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,15 +35,6 @@ class ProductType extends AbstractType
                             new NotBlank()
                         ]
                     ],
-
-                    'price' => [
-                        'field_type' => TextType::class,
-                        'label' => 'product.price',
-                        'constraints' => [
-                            new NotBlank()
-                        ]
-                    ],
-
                 ],
                 'label' => false
             ])
@@ -64,15 +53,13 @@ class ProductType extends AbstractType
                 'label' => 'product.categories',
                 'allow_add' => true,
             ])
-            ->add('dimensions', CollectionType::class , [
-                'entry_type'   => EntityType::class,
-                'entry_options' => [
-                    'class' => Dimension::class,
-                    'choice_label' => 'name',
-                    'label' => false
-                ],
+            ->add('productsDimensions', CollectionType::class , [
+                'entry_type'   => DimensionsProductsType::class,
                 'label' => 'dimension.dimensions',
                 'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'error_bubbling' => false,
             ])
         ;
     }
