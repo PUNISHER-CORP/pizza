@@ -7,6 +7,7 @@ use App\Entity\Admin\Dimension;
 use App\Entity\Admin\DimensionsProducts;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,17 +23,12 @@ class DimensionsProductsType extends AbstractType
                 'choice_label' => 'name',
                 'label' => false
             ])
-            ->add('translations', TranslationsType::class, [
-                'fields' => [
-                    'price' => [
-                        'field_type' => TextType::class,
-                        'label' => 'product.price',
-                        'constraints' => [
-                            new NotBlank()
-                        ]
-                    ],
-                ],
-                'label' => false
+            ->add('price', NumberType::class, [
+								'label' => 'product.price',
+								'scale' => 2,
+								'constraints' => [
+										new NotBlank()
+								],
             ])
         ;
     }

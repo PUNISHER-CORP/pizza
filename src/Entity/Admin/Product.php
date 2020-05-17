@@ -32,6 +32,12 @@ class Product implements TranslatableInterface
      */
     private $image;
 
+		/**
+		 * @var int
+		 * @ORM\Column(type="integer")
+		 */
+    private $type;
+
     /**
      * @Vich\UploadableField(mapping="product_image", fileNameProperty="image")
      * @var File|null
@@ -85,6 +91,16 @@ class Product implements TranslatableInterface
     {
         return $this->id;
     }
+
+		public function getType(): ?int
+		{
+				return $this->type;
+		}
+
+		public function setType(?int $type): void
+		{
+				$this->type = $type;
+		}
 
     public function getImage(): ?string
     {

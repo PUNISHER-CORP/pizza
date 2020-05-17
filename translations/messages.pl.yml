@@ -3,3 +3,9 @@ landing:
   home: 'do domu'
   link: 'link'
   disabled: 'wyłączony'
+
+cart:
+  cart: 'Koszyk'
+  errorOnProductAdd: 'Wystąpił błąd pod czas dodawania producktu do koszyka'
+  productWasAddedToCart: 'Produkt został dodany do koszyka'
+  currency: zł

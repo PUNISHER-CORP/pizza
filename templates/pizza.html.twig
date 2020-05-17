@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('custom/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
+    <title>Gulp</title>
+</head>
+<body>
+    <div class="popup">
+    <div class="popup__login">
+        <div class="popup__container">
+          <div class="popup__header">
+            <div class="popup__title popup-title">Zaloguj się</div>
+            <div class="popup__close">
+              <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+            </div>
+          </div>
+          <div class="popup__body">
+            <form action="/" method="POST">
+                <div class="popup__email">
+                  <label for="email" class="popup__label">E - mail</label>
+                  <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">
+                </div>
+                <div class="popup__password">
+                  <label for="password" class="popup__label">Hasło</label>
+                  <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">
+                </div>
+                <div class="popup__forget">
+                  <a href="#">Zapomniałeś hasła?</a>
+                </div>
+                <button class="button button-login">Załóż konto</button>
+            </form>
+          </div>
+          <a href="#" class="popup__register-link" >Nie mam konta</a>
+        </div>
+      </div>
+      <div class="popup__register">
+        <div class="popup__container">
+          <div class="popup__header">
+            <div class="popup__title popup-title">Załóż konto</div>
+            <div class="popup__close">
+              <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+            </div>
+          </div>
+          <div class="popup__body">
+            <form action="/" method="POST">
+                <div class="popup__email">
+                  <label for="email" class="popup__label">E - mail</label>
+                  <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">
+                </div>
+                <div class="popup__password">
+                  <label for="password" class="popup__label">Hasło</label>
+                  <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">
+                </div>
+                <button class="button button-register">Załóż konto</button>
+                <div class="checkbox__container">
+                  <input type="checkbox" id="checkbox"/>
+                  <label for="checkbox"></label>
+                  <div class="checkbox__text">Klikając 'Załóż konto' wyrażasz zgodę <br>
+                    na naszą <a href="#">Politykę Prywatności</a></div>
+                </div>
+            </form>
+          </div>
+          <a href="#" class="popup__login-link" >Mam już konto</a>
+        </div>
+      </div> 
+      <div class="popup__gratitude gratitude">
+        <div class="popup__container">
+          <div class="gratitude__header">
+            <div class="popup__close">
+              <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+            </div>
+          </div>
+          <div class="gratitude__title popup-title">Dziękujemy <br>
+            za zamówienie!
+            </div>
+          <div class="gratitude__description">Wkrótce kurier dostarczy zamówienie</div>
+          <div class="gratitude__badge">
+              <div class="badge"></div>            
+          </div>
+        </div>
+      </div>
+        <div class="popup__cart">
+            <div class="popup__header">
+                <div class="popup__title popup-title">Koszyk</div>
+                <div class="popup__close">
+                    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+                </div>
+            </div>
+            <div class="popup__body">
+            </div>
+            <button class="button button-cart">Przejdż do kasy</button>
+        </div>
+    </div>
+    <header class="header">
+  <div class="container">
+    <div class="header__wrapper">
+      <div class="header__logo">
+        <a href="#"><img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo"></a>
+      </div>
+      <nav class="header__menu">
+        <ul class="header__list">
+          <li class="header__item">
+            <a href="#">Główna</a>
+          </li>
+          <li class="header__item">
+            <a href="#menu">Menu</a>
+          </li>
+          <li class="header__item">
+            <a href="#delivery">Dostawa</a>
+          </li>
+          <li class="header__item">
+            <a href="#contact">Kontakt</a>
+          </li>
+          <li class="header__item">
+            <a class="header__phone-mobile" href="tel:+48537235456">+48 537 235 456</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__right">
+        <a class="header__phone" href="tel:+48537235456">+48 537 235 456</a>
+        <div class="header__dropdown">
+          <a class="dropbtn">
+            <img src="{% if (currentLanguage == 'ua') %}{{ asset('custom/img/items/lang_ua.png') }}{% else %}{{ asset('custom/img/items/lang_pl.png') }}{% endif %}" alt="pl"> {{ currentLanguage }}
+          </a>
+          <div class="dropdown-content">
+            <a href="{{ path('change_locale', {'locale': 'pl'}) }}">
+              <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+            </a>
+            <a href="{{ path('change_locale', {'locale': 'ua'}) }}">
+              <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+          </div>
+        </div>
+        <div class="header__login">
+            <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>
+        </div>
+        <div class="header__cart">
+            <a class="cart__link">
+              <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
+                {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}
+                <div class="cart__badge {% if quantity %}cart__badge-active{% endif %}">
+                    {% if quantity %}
+                      {{ quantity }}
+                    {% endif %}
+                </div>
+            </a>
+        </div>
+      </div>
+      <div class="header__dropdown header__dropdown-mobile">
+        <a class="dropbtn">
+          <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+        </a>
+        <div class="dropdown-content">
+          <a href="#">
+            <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+          </a>
+          <a href="#">
+            <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+        </div>
+      </div>
+      <div class="header__burger"><span></span></div>
+    </div>
+  </div>
+</header>
+    <section class="main">
+        <img src="{{ asset('custom/img/bazilik.png') }}" alt="bazilik" class="main__bazilik">
+        <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__pizza">
+        <div class="container">
+            <div class="main__wrapper">
+                <div class="main__title">
+                    Najlepsza <span>pizza <br> 
+                    na dowóz</span> w Słupsku
+                </div>
+                <div class="main__description">
+                    Stawiamy na wysoką jakość składników <br>
+                    i niepowtarzalny smak.
+                </div>
+                <div class="button__wrapper">
+                    <button class="button button-main">Zamów online</button>
+                    <div class="button__description">
+                        Otrzymaj <div class="a"><span>20% zniżki </span></div> <br> 
+                        na zamówienie powyżej <br>
+                        200 zł
+                    </div>
+                </div>
+                <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__pizza-mobile">
+                <div class="main__advantages">
+                    <div class="advantage__item">
+                        <img src="{{ asset('custom/img/items/adv_1.png') }}" alt="fresh products">
+                        <div class="advantage__description">
+                            Świeże <br>
+                            produkty
+                        </div>    
+                    </div>
+                    <div class="advantage__item">
+                        <img src="{{ asset('custom/img/items/adv_2.png') }}">
+                        <div class="advantage__description">
+                            Szybka <br>
+                            dostawa
+                        </div>    
+                    </div>
+                    <div class="advantage__item">
+                        <img src="{{ asset('custom/img/items/adv_3.png') }}" alt="payment">
+                        <div class="advantage__description">
+                            Płatnośc <br>
+                            online
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>  
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="menu__wrapper">
+                <h2 class="menu__title">MENU</h2>
+                <ul class="menu__tabs">
+                    <li class="menu__tab menu__tab-active">
+                        Pizza
+                        <div class="tab__image tab__pizza"></div>
+                    </li>
+                    <li class="menu__tab">
+                        Napoje
+                        <div class="tab__image tab__soda"></div>
+                    </li>
+                </ul>
+                <div class="menu__inner menu__inner-active">
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-xl-3 col-lg-6 col-md-6 product__card">
+                                <div class="menu__item">
+                                    <div class="item__body">
+                                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="pizza">
+                                        <div class="item__subtitle">{{ product.name }}</div>
+                                        <div class="item__description">{{ product.description }}</div>
+                                    </div>
+                                    <div class="item__footer">
+                                        <div class="menu__dimensions">
+                                            {% for productsDimension in product.productsDimensions %}
+                                                <div class="menu__dimension {% if loop.first %}menu__dimension-active{% endif %}">
+                                                    <div class="dimension__text" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}" data-price="{{ productsDimension.price }}">{{ productsDimension.dimension.name }}</div>
+                                                    <div class="dimension__image"></div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="price__wrapper">
+                                            <div class="input-group">
+                                                <input type="button" value="-" class="button-minus">
+                                                <input type="text" step="1" max="" value="1" class="quantity-field count">
+                                                <input type="button" value="+" class="button-plus">
+                                            </div>
+                                            <div class="price"></div>
+                                        </div>
+                                    </div>
+                                    <button data-id="{{ product.id }}" class="button button-price add-to-cart">Do koszyka</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="menu__inner">
+                    <div class="row">
+                        {% for drink in drinks %}
+                            <div class="col-xl-3 col-lg-6 col-md-6 product__card">
+                                <div class="menu__item">
+                                    <div class="item__body">
+                                        <img src="{{ vich_uploader_asset(drink, 'imageFile') }}" alt="pizza">
+                                        <div class="item__subtitle">{{ drink.name }}</div>
+                                        <div class="item__description">{{ drink.description }}</div>
+                                    </div>
+                                    <div class="item__footer">
+                                        <div class="menu__dimensions">
+                                            {% for productsDimension in drink.productsDimensions %}
+                                                <div class="menu__dimension {% if loop.first %}menu__dimension-active{% endif %}">
+                                                    <div class="dimension__text" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}" data-price="{{ productsDimension.price }}">{{ productsDimension.dimension.name }}</div>
+                                                    <div class="dimension__image"></div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="price__wrapper">
+                                            <div class="input-group">
+                                                <input type="button" value="-" class="button-minus">
+                                                <input type="text" step="1" max="" value="1" class="quantity-field count">
+                                                <input type="button" value="+" class="button-plus">
+                                            </div>
+                                            <div class="price"></div>
+                                        </div>
+                                    </div>
+                                    <button data-id="{{ drink.id }}" class="button button-price add-to-cart">Do koszyka</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a href="#" class="button__more">Pokaż więcej</a>
+            </div>
+        </div>
+    </section>
+    <section class="delivery" id="delivery">
+        <div class="container">
+            <div class="delivery__wrapper">
+                <h2 class="delivery__title">Jak zamawiać?</h2>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="delivery__image">
+                            <img src="{{ asset('custom/img/items/car.png') }}" alt="car">
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="delivery__list">
+                            <div class="delivery__item delivery__item-one">
+                                <div class="delivery__subtitle">Wybierz danie</div>
+                                <div class="delivery__description">Wybierz danie i dodaj <br>
+                                    do koszyka</div>
+                                <img src="{{ asset('custom/img/arrow.png') }}" alt="">
+                            </div>
+                            <div class="delivery__item delivery__item-two">
+                                <div class="delivery__subtitle">Wybierz danie</div>
+                                <div class="delivery__description">Wybierz danie i dodaj <br>
+                                    do koszyka</div>
+                                <img src="{{ asset('custom/img/arrow.png') }}" alt="">
+                            </div>
+                            <div class="delivery__item delivery__item-three">
+                                <div class="delivery__subtitle">Wybierz danie</div>
+                                <div class="delivery__description">Wybierz danie i dodaj <br>
+                                    do koszyka</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer__wrapper">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-6 col-md-6 logo__wrapper">
+                        <img class="footer__logo" src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo">
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 footer__item">
+                        <div class="footer__subtitle">Godziny otwarcia:</div>
+                        <ul class="footer__hours col-xl-8">
+                            <li>
+                                Pon <span>14:00 - 21:00</span>
+                            </li>
+                            <li>
+                                Wt <span>12:00 - 20:00</span>
+                            </li>
+                            <li>
+                                Śr <span>12:00 - 21:00</span>
+                            </li>
+                            <li>
+                                Czw <span>12:00 - 22:00</span>
+                            </li>
+                            <li>
+                                Pt <span>11:00 - 23:00</span>
+                            </li>
+                            <li>
+                                Sob <span>12:00 -22:00</span>
+                            </li>
+                            <li>
+                                Nd <span>12:00 - 21:00</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 footer__item">
+                        <div class="footer__subtitle">Kontakty</div>
+                        <ul class="footer__contacts">
+                            <li class="contact__item contact__item-one">
+                                76-200, Słupsk <br>
+                                Zygmunta Augusta 2
+                            </li>
+                            <li class="contact__item contact__item-two">
+                                <a class="phone" href="tel:+48508422080">+48 508 422 080</a>
+                                <a class="phone" href="tel:+48503443651">+48 503 443 651</a>
+                            </li>
+                            <li class="contact__item contact__item-three">
+                                sushihome.slupsk@gmail.com
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 footer__item">
+                        <div class="footer__subtitle">Obserwuj nas:</div>
+                        <div class="footer__socials">
+                            <a href="#" class="footer__social footer__social-instagram"></a>
+                            <a href="#" class="footer__social footer__social-facebook"></a>
+                        </div>
+                        <a href="#menu" class="button button-footer">Zamów online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="footer__all-rights">2020. All rights reserved.</div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('custom/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('custom/js/script.js') }}"></script>
+    <script src="{{ asset('custom/js/cart.js') }}"></script>
+</body>
+</html>

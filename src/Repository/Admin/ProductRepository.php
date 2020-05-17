@@ -19,6 +19,23 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function getAllByLocale($locale = 'pl')
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb
+            ->innerJoin('p.productsCategories', 'ppc')
+//            ->innerJoin('p.productsDimensions', 'ppd')
+            ->innerJoin('ppc.category', 'ppcc')
+//            ->innerJoin('ppd.dimension', 'ppdd')
+            ->innerJoin('ppcc.translations', 'ppcct')
+            ->where($qb->expr()->eq('ppcct.locale', ':locale'))
+            ->setParameter('locale', $locale)
+        ;
+
+        return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

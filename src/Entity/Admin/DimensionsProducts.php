@@ -11,16 +11,20 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * @ORM\Entity()
  * @ORM\Table(name="dimensions_products")
  */
-class DimensionsProducts implements TranslatableInterface
+class DimensionsProducts
 {
-    use TranslatableTrait;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+		/**
+		 * @ORM\Column(type="string")
+		 * @var string
+		 */
+		private $price;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Admin\Dimension", inversedBy="dimensionsProducts")
@@ -34,20 +38,20 @@ class DimensionsProducts implements TranslatableInterface
      */
     protected $product;
 
-    public function __call($method, $arguments)
-    {
-        return PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
-    }
-
-    public function getPrice(): ?string
-    {
-        return $this->__call('getPrice', []);
-    }
-
     public function getId()
     {
         return $this->id;
     }
+
+		public function getPrice(): ?float
+		{
+				return $this->price;
+		}
+
+		public function setPrice(?float $price): void
+		{
+				$this->price = $price;
+		}
 
     public function getDimension(): ?Dimension
     {

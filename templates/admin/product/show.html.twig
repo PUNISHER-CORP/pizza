@@ -26,6 +26,10 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>{{ 'product.type'|trans }}</th>
+                        <td>{{ product.type }}</td>
+                    </tr>
+                    <tr>
                         <th>{{ 'product.mainImage'|trans }}</th>
                         <td><img src="{{ vich_uploader_asset(product) }}" class="product__image" alt="{{ product.name }}" /></td>
                     </tr>
@@ -44,7 +48,7 @@
                             {% for productDimension in product.productsDimensions %}
                                 <div class="row">
                                     <div class="col-2">{{ productDimension.dimension.name }}</div>
-                                    <div class="col-10">{{ renderTranslationField(productDimension, 'price')|raw }}</div>
+                                    <div class="col-10">{{ productDimension.price }} zł</div>
                                 </div>
                                 {% if not loop.last %}
                                     <hr>

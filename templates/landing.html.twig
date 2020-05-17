@@ -11,6 +11,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ asset('custom/css/main.css') }}">
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -40,16 +46,60 @@
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </form>
         </div>
     </nav>
+    <section>
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-4">
+                        <div class="card-item">
+                            <img src="{{ vich_uploader_asset(product) }}" class=" card-img" alt="">
+                            <div class="title">{{ product.name }}</div>
+                            <div class="description">{{ product.description }}</div>
+                            <div class="dimensions">
+                                {% for productsDimension in product.productsDimensions %}
+                                    <div class="dimension-item {% if loop.first %}active{% endif %}" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}">
+                                        {{ productsDimension.dimension.name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="price-content">
+                                <input type="number" class="quantity" name="quantity" value="1">
+                                <div class="price d-flex">
+                                    <div class="number">
+                                        {% for productsDimension in product.productsDimensions %}
+                                            {% if loop.first %}{{ productsDimension.price }}{% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="currency">{{ 'cart.currency'|trans }}</div>
+                                </div>
+                            </div>
+                            <button data-id="{{ product.id }}" class="btn btn-success add-to-cart">Add to cart</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 </div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+<script src="{{ asset('custom/js/cart.js') }}"></script>
+<script>
+    $(function () {
+        $(document).on('click', '.dimension-item', function () {
+            let price = $(this).data('price');
+            let $cardItem = $(this).closest('.card-item');
+            $(this).addClass('active').siblings().removeClass('active');
+            $cardItem.find('.price > .number').text(price);
+        })
+    });
+</script>
 </body>
 </html>

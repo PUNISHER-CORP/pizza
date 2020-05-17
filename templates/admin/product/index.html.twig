@@ -17,6 +17,7 @@
                     <thead>
                     <tr>
                         <th style="width: 10px">{{ 'global.id'|trans }}</th>
+                        <th>{{ 'product.type'|trans }}</th>
                         <th>{{ 'product.name'|trans }}</th>
                         <th>{{ 'product.description'|trans }}</th>
                         <th class="w-25">{{ 'global.actions'|trans }}</th>
@@ -26,6 +27,7 @@
                     {% for product in pagination %}
                         <tr>
                             <td>{{ product.id }}</td>
+                            <td>{% if product.type in types|keys %}{{ types[product.type]|trans }}{% endif %}</td>
                             <td>{{ product.name }}</td>
                             <td>{{ product.description }}</td>
                             <td>

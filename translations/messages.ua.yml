@@ -3,3 +3,9 @@ landing:
   home: 'до дому'
   link: 'ссылка'
   disabled: 'выключено'
+
+cart:
+  cart: 'Koszyk'
+  errorOnProductAdd: 'Wystąpił błąd pod czas dodawania producktu do koszyka'
+  productWasAddedToCart: 'Produkt został dodany do koszyka'
+  currency: грн

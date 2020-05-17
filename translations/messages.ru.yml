@@ -37,6 +37,10 @@ product:
   dimensions: 'Величины'
   add: 'Добавление продукта'
   edit: 'Редактирование продукта'
+  type: 'Тип продукта'
+  pizza: 'Пицца'
+  sushi: 'Суши'
+  drinks: 'Напитки'
 
 email:
   confirmRegistration:

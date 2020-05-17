@@ -5,6 +5,7 @@ namespace App\Form\Admin;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 use App\Entity\Admin\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,13 +30,18 @@ class ProductType extends AbstractType
                     'description' => [
                         'field_type' => TextType::class,
                         'label' => 'product.description',
-                        'constraints' => [
-                            new NotBlank()
-                        ]
                     ],
                 ],
                 'label' => false
             ])
+						->add('type', ChoiceType::class, [
+								'label' => 'product.type',
+								'choices' => array_flip(\App\Enum\ProductType::getProductTypes()),
+								'placeholder' => 'form.choose',
+								'constraints' => [
+										new NotBlank()
+								]
+						])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'product.mainImage',
                 'allow_delete' => true,
