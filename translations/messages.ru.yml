@@ -42,6 +42,33 @@ product:
   sushi: 'Суши'
   drinks: 'Напитки'
 
+order:
+  orders: 'Заказы'
+  order: 'Заказ'
+  totalPrice: 'Сумма заказа'
+  payu: 'Płatność online'
+  cash: 'Płatność na miejscu'
+  inPlace: 'Odbiór na miejscu'
+  delivery: 'Dowóz'
+  street: 'Ulica'
+  house: 'Nr domu'
+  flat: 'Nr localu'
+  floor: 'Piętro'
+  name: 'Imię'
+  surname: 'Nazwisko'
+  email: 'Email'
+  phone: 'Numer telefonu'
+  notes: 'Uwagi do zamówienia'
+  payMethod: 'Metoda płatności'
+  deliveryMethod: 'Rodzaj dostawy'
+
+orderProduct:
+  orderProducts: 'Продукты заказа'
+  name: 'Название'
+  type: 'Тип'
+  dimensionName: 'Величина'
+  quantity: 'Количество'
+
 email:
   confirmRegistration:
     subject: 'Подтверждение регистрации'

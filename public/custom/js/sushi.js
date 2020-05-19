@@ -1,13 +1,12 @@
 $(document).ready(function () {
   $('.sushi__categories').owlCarousel({
-    loop:true,
     margin:10,
-    items:3,
+    items:2,
     dots: false,
     nav: true,
     navText:[
-      "<img src='img/items/left.svg' alt=''>",
-      "<img src='img/items/right.svg' alt=''>"
+      "<i class=\"fas fa-arrow-left\"></i>",
+      "<i class=\"fas fa-arrow-right\"></i>"
     ],
     responsive : {
       // breakpoint from 0 up
@@ -34,7 +33,12 @@ $(document).ready(function () {
       1500 : {
         items:4,
       }
-  }
-  })
+    }
+  });
+});
 
+var li =  $(".sushi__categories li ");
+$(".sushi__categories li").click(function(){
+  $('.sushi__category').removeClass('active');
+  $(this).addClass('active');
 });

@@ -70,6 +70,14 @@ hr {
   font-style: bold;
 }
 
+.invalid-feedback {
+  color: red;
+}
+
+label .invalid-feedback {
+  display: none!important;
+}
+
 .button {
   width: 358px;
   height: 107px;
@@ -93,6 +101,7 @@ hr {
 
 .button:hover {
   background-image: linear-gradient(to top, #fcc737, #ffba00);
+  color: #19191c;
 }
 
 .button:after {
@@ -300,6 +309,7 @@ hr {
 
 .header__cart {
   position: relative;
+  cursor: pointer;
 }
 
 .header .cart__badge {
@@ -514,7 +524,7 @@ hr {
 .menu__item .item__description {
   font-size: 14px;
   color: #e0e0e0;
-  margin-bottom: 66px;
+  margin-bottom: 35px;
 }
 
 .menu__item .price__wrapper {
@@ -580,6 +590,10 @@ hr {
   padding: 16px 22px;
 }
 
+.menu .sushi__category.active {
+  color: #ffa32a;
+}
+
 .menu .sushi__category-active {
   color: #ffa32a;
 }
@@ -628,6 +642,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
+.input-group {
+  width: 50%;
+}
+
 .input-group input[type="button"] {
   font-size: 35px;
   background: none;
@@ -669,6 +687,7 @@ input[type="text"] {
   font-family: "Montserrat-Bold";
   color: #ffffff;
   margin-bottom: 126px;
+  margin-top: 55px;
   text-align: center;
 }
 
@@ -925,6 +944,12 @@ input[type="text"] {
   justify-content: space-between;
 }
 
+.empty__cart {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 55px;
+}
+
 .popup-title {
   font-size: 24px;
   font-family: "Montserrat-Bold";
@@ -1058,6 +1083,22 @@ input[type="text"] {
   display: flex;
 }
 
+.popup__cart .cart__body {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__cart .cart__dimension {
+  font-size: 15px;
+  font-family: "Montserrat-Bold";
+  color: #d8690c;
+}
+
+.category__tab {
+  cursor: pointer;
+}
+
 .popup__cart .cart__image {
   width: 131px;
   margin-right: 11px;
@@ -1189,6 +1230,7 @@ input[type="text"] {
   padding: 45px 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .order__item:last-child {
@@ -1218,6 +1260,16 @@ input[type="text"] {
   font-size: 12px;
   max-width: 400px;
   margin-right: 140px;
+}
+
+.order__price__container {
+  justify-content: space-around;
+}
+
+.order__dimension, .order__product-count {
+  font-size: 20px;
+  font-family: "Montserrat-Bold";
+  color: #d8690c;
 }
 
 .order__price {
@@ -1293,6 +1345,8 @@ input[type="text"] {
   border-radius: 53.5px;
   width: 100%;
   padding: 0 36px;
+  background-color: unset;
+  font-size: 26px;
 }
 
 .payment .row {
@@ -1312,8 +1366,10 @@ input[type="text"] {
   border: solid 2px #8dd240 !important;
   border-radius: 20px;
   width: 100%;
-  padding: 0 36px;
+  padding: 20px 36px;
   background-color: unset;
+  color: #fff;
+  font-size: 20px;
 }
 
 .payment__buttons {
@@ -1413,11 +1469,11 @@ input[type="text"] {
   color: #e90707;
 }
 
-.payment .checkbox__container #checkbox {
+.payment .checkbox__container .checkbox {
   display: none;
 }
 
-.payment .checkbox__container #checkbox + label {
+.payment .checkbox__container .checkbox + label {
   display: block;
   text-align: center;
   width: 33px;
@@ -1429,13 +1485,13 @@ input[type="text"] {
   cursor: pointer;
 }
 
-.payment .checkbox__container #checkbox + label:before {
+.payment .checkbox__container .checkbox + label:before {
   content: '✔';
   font-size: 20px;
   color: #fff;
 }
 
-.payment .checkbox__container #checkbox:checked + label:before {
+.payment .checkbox__container .checkbox:not(:checked) + label:before {
   display: none;
 }
 
@@ -1720,6 +1776,13 @@ input[type="text"] {
 }
 
 @media (max-width: 576px) {
+  .menu .sushi .owl-prev {
+    left: -15px;
+  }
+  .menu .sushi .owl-next {
+    right: -15px;
+  }
+
   .header__phone {
     display: none;
   }
@@ -1966,12 +2029,6 @@ input[type="text"] {
 
   .popup .cart__item {
     padding: 20px 0;
-  }
-
-  .cart__body {
-    justify-content: space-between;
-    display: flex;
-    flex-direction: column;
   }
 
   .popup .cart__image {

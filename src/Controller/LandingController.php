@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Enum\ProductType;
+use App\Repository\Admin\CategoryRepository;
 use App\Repository\Admin\ProductRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,13 +17,27 @@ class LandingController extends AbstractCrudController
      */
     private $productRepository;
 
-    public function __construct(ProductRepository $productRepository)
-    {
-        $this->productRepository = $productRepository;
-    }
+	/**
+	 * @var CategoryRepository
+	 */
+    private $categoryRepository;
 
-    /**
-		 * Pizza landing
+	public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
+	{
+		$this->productRepository = $productRepository;
+		$this->categoryRepository = $categoryRepository;
+	}
+
+	/**
+	 * @Route("/preview", name="preview")
+	 */
+	public function preview(): Response
+	{
+		return $this->render('preview.html.twig');
+	}
+
+	/**
+	 * Pizza landing
      * @Route("/", name="pizza_index")
      */
     public function index(Request $request): Response
@@ -32,22 +47,36 @@ class LandingController extends AbstractCrudController
 
         return $this->render('pizza.html.twig', [
             'products' => $products,
-						'drinks' => $drinks,
-     				'currentLanguage' => $request->getSession()->get('_locale', 'pl')
+			'drinks' => $drinks,
+			'currentLanguage' => $request->getSession()->get('_locale', 'pl')
         ]);
     }
 
     /**
-		 *
-     * @Route("/landing", name="landing_index")
+	 * Sushi landing
+     * @Route("/sushi", name="sushi_index")
      */
     public function landing(Request $request): Response
     {
-        $products = $this->productRepository->findBy(['type' => ProductType::PIZZA]);
+		$products = $this->productRepository->findBy(['type' => ProductType::SUSHI]);
 
-        return $this->render('landing.html.twig', [
-            'products' => $products
-        ]);
+		$productsByCategories = [];
+
+		foreach ($products as $product) {
+			foreach ($product->getProductsCategories() as $productsCategory) {
+				$productsByCategories[$productsCategory->getCategory()->getId()][] = $product;
+			}
+		}
+
+		$drinks = $this->productRepository->findBy(['type' => ProductType::DRINKS]);
+		$categories = $this->categoryRepository->findAll();
+
+		return $this->render('sushi.html.twig', [
+			'products' => $productsByCategories,
+			'drinks' => $drinks,
+			'categories' => $categories,
+			'currentLanguage' => $request->getSession()->get('_locale', 'pl')
+		]);
     }
 
     /**
@@ -56,7 +85,7 @@ class LandingController extends AbstractCrudController
     public function changeLocale(string $locale, Request $request): RedirectResponse
     {
         $request->getSession()->set('_locale', $locale);
-				$referer = $request->headers->get('referer');
+		$referer = $request->headers->get('referer');
 
         return new RedirectResponse($referer);
     }

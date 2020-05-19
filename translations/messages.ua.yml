@@ -1,11 +1,139 @@
-landing:
-  navbar: 'навбар'
-  home: 'до дому'
-  link: 'ссылка'
-  disabled: 'выключено'
+preview:
+  pageTitle: 'Sushi and Pizza Home'
+  mainText: 'Dostawa <span>sushi</span> i pysznej <span>pizzy</span> w Słupsku'
+  description: 'Zorganizowaliśmy dostawę
+    sushi i pizzy w trybie "nonstop"
+    7 dni w tygodniu,  dzięki czemu
+    można cieszyć się ulubionymi
+    potrawami bez wychodzenia
+    z domu lub biura.'
+  sushi: 'Sushi'
+  pizza: 'Pizza'
+
+footer:
+  allRights: '2020. All rights reserved.'
+  button: 'Zamów online'
+  hours: 'Godziny otwarcia'
+  monday: 'Pon'
+  tuesday: 'Wt'
+  wednesday: 'Śr'
+  thursday: 'Czw'
+  friday: 'Pt'
+  saturday: 'Sob'
+  sunday: 'Nd'
+  contacts: 'Kontakty'
+  watchAs: 'Obserwuj nas:'
+  mail: 'sushihome.slupsk@gmail.com'
+
+pizza:
+  pageTitle: ''
+  header:
+    main: 'Головна'
+    menu: 'Меню'
+    delivery: 'Доставка'
+    contact: 'Контакт'
+  main:
+    title: 'Najlepsza <span>pizza <br> na dowóz</span> w Słupsku'
+    description: 'Stawiamy na wysoką jakość składników <br> i niepowtarzalny smak.'
+    buttonMain: 'Zamów online'
+    buttonDescription: 'Otrzymaj <div class="a"><span>20% zniżki </span></div> <br> na zamówienie powyżej <br> 200 zł'
+    freshProducts: 'Świeże <br> produkty'
+    fastDelivery: 'Szybka <br> dostawa'
+    paymentOnline: 'Płatnośc <br> online'
+  menu:
+    menu: 'MENU'
+    pizza: 'Pizza'
+    drinks: 'Napoje'
+    addToCart: 'Do koszyka'
+  delivery:
+    title: 'Jak zamawiać?'
+    itemOne:
+      title: 'Wybierz danie'
+      description: 'Wybierz danie i dodaj <br> do koszyka'
+    itemTwo:
+      title: 'Zapłać'
+      description: 'Zapłać przelewem <br> lub gotówką kurierowi'
+    itemThree:
+      title: 'Odbierz'
+      description: 'Czekaj na kuriera. <br> Życzymy smacznego'
+
+sushi:
+  pageTitle: ''
+  header:
+    main: 'Головна'
+    menu: 'Меню'
+    delivery: 'Доставка'
+    contact: 'Контакт'
+  main:
+    title: 'Najlepsze <span>sushi <br> na dowóz</span> w Słupsku'
+    description: 'Stawiamy na wysoką jakość składników <br> i niepowtarzalny smak.'
+    buttonMain: 'Zamów online'
+    buttonDescription: 'Otrzymaj <div class="a"><span>20% zniżki </span></div> <br> na zamówienie powyżej <br> 200 zł'
+    freshProducts: 'Świeże <br> produkty'
+    fastDelivery: 'Szybka <br> dostawa'
+    paymentOnline: 'Płatnośc <br> online'
+  menu:
+    menu: 'MENU'
+    sushi: 'Sushi'
+    drinks: 'Napoje'
+    addToCart: 'Do koszyka'
+  delivery:
+    title: 'Jak zamawiać?'
+    itemOne:
+      title: 'Wybierz danie'
+      description: 'Wybierz danie i dodaj <br> do koszyka'
+    itemTwo:
+      title: 'Zapłać'
+      description: 'Zapłać przelewem <br> lub gotówką kurierowi'
+    itemThree:
+      title: 'Odbierz'
+      description: 'Czekaj na kuriera. <br> Życzymy smacznego'
+
+popup:
+  gratitude:
+    title: 'Dziękujemy <br> za zamówienie!'
+    description: 'Zamówienie zostało poprawnie złożone'
+    error: 'Ups, coś poszło nie tak, poszimy zgłosić to do nas poprzez pocztę'
+  cart:
+    cart: 'Koszyk'
 
 cart:
   cart: 'Koszyk'
   errorOnProductAdd: 'Wystąpił błąd pod czas dodawania producktu do koszyka'
   productWasAddedToCart: 'Produkt został dodany do koszyka'
-  currency: грн
+  currency: zł
+  quantity: 'ilość'
+  delete: 'Usuń'
+  total: 'Łącznie'
+  empty: 'Koszyk jest pusty'
+  goToPay: 'Przejdż do kasy'
+
+order:
+  pageTitle: 'Zamówienie'
+  backToMain: 'Powrót do głównej'
+  order: 'Zamówienie'
+  quantity: 'ilość'
+  delete: 'Usuń'
+  totalPrice: 'Łącznie'
+  deliveryTitle: 'Dostawa'
+  payu: 'Płatność online'
+  cash: 'Płatność na miejscu'
+  inPlace: 'Odbiór na miejscu'
+  delivery: 'Dowóz'
+  street: 'Ulica'
+  house: 'Nr domu'
+  flat: 'Nr localu'
+  floor: 'Piętro'
+  name: 'Imię'
+  surname: 'Nazwisko'
+  email: 'Email'
+  phone: 'Numer telefonu'
+  notes: 'Uwagi do zamówienia'
+  payMethod: 'Metoda płatności'
+  deliveryMethod: 'Rodzaj dostawy'
+  orderAndPay: 'Zamawiam i płace'
+  regulation:
+    agree: 'Akceptuję postanowienia'
+    regulation: 'Regulaminu'
+    introduced: 'i zapoznałem się z'
+    personal: 'Polityką prywatności'

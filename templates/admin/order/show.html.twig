@@ -1,0 +1,93 @@
+{% extends 'admin/order/order_base.html.twig' %}
+
+{% block title %}{{ 'order.order'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ 'order.order'|trans }}</h1>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="w-25">{{ 'global.id'|trans }}</th>
+                            <td>{{ order.id }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.street'|trans }}</th>
+                            <td>{{ order.street }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.house'|trans }}</th>
+                            <td>{{ order.house }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.flat'|trans }}</th>
+                            <td>{{ order.flat }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.floor'|trans }}</th>
+                            <td>{{ order.floor }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.phone'|trans }}</th>
+                            <td>{{ order.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.name'|trans }}</th>
+                            <td>{{ order.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.surname'|trans }}</th>
+                            <td>{{ order.surname }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.email'|trans }}</th>
+                            <td>{{ order.email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.payMethod'|trans }}</th>
+                            <td>{% if order.payMethod in paymentMethod|keys %}{{ paymentMethod[order.payMethod]|trans }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.deliveryMethod'|trans }}</th>
+                            <td>{% if order.delivery in deliveryMethod|keys %}{{ deliveryMethod[order.delivery]|trans }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.totalPrice'|trans }}</th>
+                            <td>{{ order.totalPrice }} zł</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'order.notes'|trans }}</th>
+                            <td>{{ order.notes }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-body">
+                <h2>{{ 'orderProduct.orderProducts'|trans }}</h2>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th class="w-25">{{ 'orderProduct.name'|trans }}</th>
+                        <th class="w-25">{{ 'orderProduct.type'|trans }}</th>
+                        <th class="w-25">{{ 'orderProduct.dimensionName'|trans }}</th>
+                        <th class="w-25">{{ 'orderProduct.quantity'|trans }}</th>
+                    </tr>
+                    {% for orderProduct in order.orderProducts %}
+                        <tr>
+                            <td><a href="{{ path('admin_product_show', {id: orderProduct.product.id }) }}">{{ orderProduct.product.name }}</a></td>
+                            <td>{% if orderProduct.product.type in type|keys %}{{ type[orderProduct.product.type]|trans }}{% endif %}</td>
+                            <td>{{ orderProduct.productsDimensions.dimension.name }}</td>
+                            <td>{{ orderProduct.quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <a href="{{ path('admin_order_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

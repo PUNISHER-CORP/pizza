@@ -8,7 +8,7 @@ use Knp\DoctrineBehaviors\Model\Translatable\TranslatableTrait;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\Admin\DimensionsProductsRepository")
  * @ORM\Table(name="dimensions_products")
  */
 class DimensionsProducts

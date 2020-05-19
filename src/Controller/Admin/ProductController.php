@@ -31,7 +31,7 @@ class ProductController extends AbstractController
 
         return $this->render('admin/product/index.html.twig', [
             'pagination' => $pagination,
-						'types' => \App\Enum\ProductType::getProductTypes()
+			'types' => \App\Enum\ProductType::getProductTypes()
         ]);
     }
 

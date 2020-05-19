@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\DTO\Cart;
-use App\Entity\Admin\DimensionsProducts;
 use App\Repository\Admin\DimensionRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Service\CartService;
@@ -23,7 +22,7 @@ class CartController extends AbstractController
     private $productRepository;
 
     /**
-     * @var DimensionsProducts
+     * @var DimensionRepository
      */
     private $dimensionRepository;
 
@@ -45,44 +44,43 @@ class CartController extends AbstractController
         $this->dimensionRepository = $dimensionRepository;
     }
 
-		/**
-		 * @Route("/cart-quantity", name="cart-quantity")
-		 */
-		public function getQuantityInCart(): Response
-		{
-				$cartSession = $this->cartService->getProducts();
+	/**
+	 * @Route("/cart-quantity", name="cart-quantity")
+	 */
+	public function getQuantityInCart(): Response
+	{
+		$cartSession = $this->cartService->getProducts();
 
-				if (!$cartSession) {
-						return $this->render('cart/popup.html.twig', [
-								'cart' => [],
-						]);
-				}
-				$cartDto = new Cart($this->productRepository, $this->dimensionRepository);
-				$cartDto->setProducts($cartSession['products']);
-				$quantity = $cartDto->getQuantity();
-
-				return new Response(isset($quantity) ? $quantity : null);
-    }
-
-		/**
-		 * @Route("/show", name="show_cart", options={"expose": true})
-		 */
-		public function show(Request $request): Response
-		{
-				$cartSession = $this->cartService->getProducts();
-
-				if (!$cartSession) {
-						return $this->render('cart/popup.html.twig', [
-								'cart' => [],
-						]);
-				}
-				$cartDto = new Cart($this->productRepository, $this->dimensionRepository);
-				$cartDto->setProducts($cartSession['products']);
-
-				return $this->render('cart/popup.html.twig', [
-						'cart' => $cartDto,
-				]);
+		if (!$cartSession) {
+			return new Response(null);
 		}
+
+		$cartDto = new Cart($this->productRepository, $this->dimensionRepository);
+		$cartDto->setProducts($cartSession['products']);
+		$quantity = $cartDto->getQuantity();
+
+		return new Response(isset($quantity) ? $quantity : null);
+	}
+
+	/**
+	 * @Route("/show", name="show_cart", options={"expose": true})
+	 */
+	public function show(Request $request): Response
+	{
+		$cartSession = $this->cartService->getProducts();
+
+		if (!$cartSession) {
+			return $this->render('cart/popup.html.twig', [
+				'cart' => [],
+			]);
+		}
+		$cartDto = new Cart($this->productRepository, $this->dimensionRepository);
+		$cartDto->setProducts($cartSession['products']);
+
+		return $this->render('cart/popup.html.twig', [
+			'cart' => $cartDto,
+		]);
+	}
 
     /**
      * @Route("/add-product/{productId}/{quantity}/{dimensionId}", name="cart_add_product", methods={"GET"}, requirements={"productId": "\d+"}, options={"expose": true})
@@ -100,17 +98,17 @@ class CartController extends AbstractController
         return new JsonResponse(['status' => Response::HTTP_OK, 'quantity' => $products['quantity']]);
     }
 
-		/**
-		 * @Route("/delete-product/{productId}/{dimensionId}", name="cart_delete_product")
-		 */
-		public function deleteProduct(Request $request, $productId, $dimensionId)
-		{
-				$products = $this->cartService->getProducts();
+	/**
+	 * @Route("/delete-product/{productId}/{dimensionId}", name="cart_delete_product")
+	 */
+	public function deleteProduct(Request $request, $productId, $dimensionId)
+	{
+		$products = $this->cartService->getProducts();
 
-				unset($products['products'][$productId][$dimensionId]);
-				$this->cartService->save($products);
+		unset($products['products'][$productId][$dimensionId]);
+		$this->cartService->save($products);
 
-				$referer = $request->headers->get('referer');
-				return new RedirectResponse($referer);
+		$referer = $request->headers->get('referer');
+		return new RedirectResponse($referer);
     }
 }

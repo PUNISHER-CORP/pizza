@@ -9,11 +9,15 @@
                     <div class="cart__subtitle">{{ product.name }}</div>
                     <div class="cart__description">{{ product.description }}</div>
                     <div class="cart__quantity">
-                        ilość: {{ product.quantity }}
+                        <div class="cart__dimension">
+                            {{ product.dimension.name }}
+                            <br>
+                            {{ 'cart.quantity'|trans }}: {{ product.quantity }}
+                        </div>
                     </div>
                 </div>
                 <div class="cart__price">
-                    <a href="{{ path('cart_delete_product', {productId: product.id, dimensionId: product.dimension.id} ) }}" class="cart__delete">Usuń</a>
+                    <a href="{{ path('cart_delete_product', {productId: product.id, dimensionId: product.dimension.id} ) }}" class="cart__delete">{{ 'cart.delete'|trans }}</a>
                     <div class="item__price">{{ product.price }} zł</div>
                 </div>
             </div>
@@ -22,12 +26,15 @@
     <div class="cart__hr"></div>
     <div class="cart__total">
         <div class="cart__text">
-            Łącznie:
+            {{ 'cart.total'|trans }}:
         </div>
         <div class="cart__price">
             {{ cart.totalPrice }} zł
         </div>
     </div>
+    <a href="{{ path('order__page') }}" class="button button-cart">{{ 'cart.goToPay'|trans }}</a>
 {% else %}
-    koszyk pusty
+    <div class="empty__cart">
+        {{ 'cart.empty'|trans }}
+    </div>
 {% endif %}

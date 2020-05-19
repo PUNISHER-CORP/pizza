@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-grid.min.css') }}">
     <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('custom/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
-    <title>{{ 'pizza.pageTitle'|trans }}</title>
+    <title>{{ 'sushi.pageTitle'|trans }}</title>
 </head>
 <body>
     <div class="popup">
@@ -42,164 +45,168 @@
 {#      </div>#}
 {#    <div class="popup__register">#}
 {#    <div class="popup__container">#}
-{#      <div class="popup__header">#}
-{#        <div class="popup__title popup-title">Załóż konto</div>#}
-{#        <div class="popup__close">#}
-{#          <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
-{#        </div>#}
-{#      </div>#}
-{#      <div class="popup__body">#}
-{#        <form action="/" method="POST">#}
-{#            <div class="popup__email">#}
-{#              <label for="email" class="popup__label">E - mail</label>#}
-{#              <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">#}
-{#            </div>#}
-{#            <div class="popup__password">#}
-{#              <label for="password" class="popup__label">Hasło</label>#}
-{#              <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">#}
-{#            </div>#}
-{#            <button class="button button-register">Załóż konto</button>#}
-{#            <div class="checkbox__container">#}
-{#              <input type="checkbox" id="checkbox"/>#}
-{#              <label for="checkbox"></label>#}
-{#              <div class="checkbox__text">Klikając 'Załóż konto' wyrażasz zgodę <br>#}
-{#                na naszą <a href="#">Politykę Prywatności</a></div>#}
-{#            </div>#}
-{#        </form>#}
-{#      </div>#}
-{#      <a href="#" class="popup__login-link" >Mam już konto</a>#}
+{#    <div class="popup__header">#}
+{#    <div class="popup__title popup-title">Załóż konto</div>#}
+{#    <div class="popup__close">#}
+{#    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
+{#    </div>#}
+{#    </div>#}
+{#    <div class="popup__body">#}
+{#    <form action="/" method="POST">#}
+{#    <div class="popup__email">#}
+{#      <label for="email" class="popup__label">E - mail</label>#}
+{#      <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">#}
+{#    </div>#}
+{#    <div class="popup__password">#}
+{#      <label for="password" class="popup__label">Hasło</label>#}
+{#      <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">#}
+{#    </div>#}
+{#    <button class="button button-register">Załóż konto</button>#}
+{#    <div class="checkbox__container">#}
+{#      <input type="checkbox" id="checkbox"/>#}
+{#      <label for="checkbox"></label>#}
+{#      <div class="checkbox__text">Klikając 'Załóż konto' wyrażasz zgodę <br>#}
+{#        na naszą <a href="#">Politykę Prywatności</a></div>#}
+{#    </div>#}
+{#    </form>#}
+{#    </div>#}
+{#    <a href="#" class="popup__login-link" >Mam już konto</a>#}
 {#    </div>#}
 {#    </div> #}
-{#    <div class="popup__gratitude  gratitude">#}
-{#        <div class="popup__container">#}
-{#          <div class="gratitude__header">#}
-{#            <div class="popup__close">#}
-{#              <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="gratitude__title popup-title">{{ 'popup.gratitude.title'|trans|raw }}</div>#}
-{#          <div class="gratitude__description">{{ 'popup.gratitude.description'|trans }}</div>#}
-{#          <div class="gratitude__badge">#}
-{#              <div class="badge"></div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
+{#    <div class="popup__gratitude gratitude">#}
+{#    <div class="popup__container">#}
+{#    <div class="gratitude__header">#}
+{#    <div class="popup__close">#}
+{#    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
+{#    </div>#}
+{#    </div>#}
+{#    <div class="gratitude__title popup-title">Dziękujemy <br>#}
+{#    za zamówienie!#}
+{#    </div>#}
+{#    <div class="gratitude__description">Wkrótce kurier dostarczy zamówienie</div>#}
+{#    <div class="gratitude__badge">#}
+{#    <div class="badge"></div>            #}
+{#    </div>#}
+{#    </div>#}
+{#    </div>  #}
     <div class="popup__cart">
         <div class="popup__header">
             <div class="popup__title popup-title">{{ 'popup.cart.cart'|trans }}</div>
             <div class="popup__close">
-                <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+            <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
             </div>
         </div>
         <div class="popup__body">
         </div>
-    </div>
-    </div>
+      </div>  
+</div>
     <header class="header">
-  <div class="container">
-    <div class="header__wrapper">
-      <div class="header__logo">
-        <a href="#"><img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo"></a>
-      </div>
-      <nav class="header__menu">
-        <ul class="header__list">
-          <li class="header__item">
-            <a href="#">{{ 'pizza.header.main'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#menu">{{ 'pizza.header.menu'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#delivery">{{ 'pizza.header.delivery'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#contact">{{ 'pizza.header.contact'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a class="header__phone-mobile" href="tel:+48537235456">+48 537 235 456</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="header__right">
-        <a class="header__phone" href="tel:+48537235456">+48 537 235 456</a>
-        <div class="header__dropdown">
-          <a class="dropbtn">
-            <img src="{% if (currentLanguage == 'ua') %}{{ asset('custom/img/items/lang_ua.png') }}{% else %}{{ asset('custom/img/items/lang_pl.png') }}{% endif %}" alt="pl"> {{ currentLanguage }}
-          </a>
-          <div class="dropdown-content">
-            <a href="{{ path('change_locale', {'locale': 'pl'}) }}">
-              <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
-            </a>
-            <a href="{{ path('change_locale', {'locale': 'ua'}) }}">
-              <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+        <div class="container">
+          <div class="header__wrapper">
+            <div class="header__logo">
+              <a href="#"><img src="{{ asset('custom/img/sushi_logo.png') }}" alt="logo"></a>
+            </div>
+            <nav class="header__menu">
+              <ul class="header__list">
+                <li class="header__item">
+                  <a href="#">{{ 'sushi.header.main'|trans }}</a>
+                </li>
+                <li class="header__item">
+                  <a href="#menu">{{ 'sushi.header.menu'|trans }}</a>
+                </li>
+                <li class="header__item">
+                  <a href="#delivery">{{ 'sushi.header.delivery'|trans }}</a>
+                </li>
+                <li class="header__item">
+                  <a href="#contact">{{ 'sushi.header.contact'|trans }}</a>
+                </li>
+                <li class="header__item">
+                  <a class="header__phone-mobile" href="tel:+48537235456">+48 537 235 456</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="header__right">
+              <a class="header__phone" href="tel:+48537235456">+48 537 235 456</a>
+              <div class="header__dropdown">
+                  <a class="dropbtn">
+                      <img src="{% if (currentLanguage == 'ua') %}{{ asset('custom/img/items/lang_ua.png') }}{% else %}{{ asset('custom/img/items/lang_pl.png') }}{% endif %}" alt="pl"> {{ currentLanguage }}
+                  </a>
+                  <div class="dropdown-content">
+                      <a href="{{ path('change_locale', {'locale': 'pl'}) }}">
+                          <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+                      </a>
+                      <a href="{{ path('change_locale', {'locale': 'ua'}) }}">
+                          <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+                  </div>
+              </div>
+{#              <div class="header__login">#}
+{#                  <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>       #}
+{#              </div>#}
+              <div class="header__cart">
+                  <a class="cart__link">
+                      <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
+                      {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}
+                      <div class="cart__badge {% if quantity %}cart__badge-active{% endif %}">
+                          {% if quantity %}
+                              {{ quantity }}
+                          {% endif %}
+                      </div>
+                  </a>
+              </div>
+            </div>
+            <div class="header__dropdown header__dropdown-mobile">
+              <a class="dropbtn">
+                <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+              </a>
+              <div class="dropdown-content">
+                <a href="#">
+                  <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+                </a>
+                <a href="#">
+                  <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+              </div>
+            </div>
+            <div class="header__burger"><span></span></div>
           </div>
         </div>
-{#        <div class="header__login">#}
-{#            <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>#}
-{#        </div>#}
-        <div class="header__cart">
-            <a class="cart__link">
-              <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
-                {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}
-                <div class="cart__badge {% if quantity %}cart__badge-active{% endif %}">
-                    {% if quantity %}
-                      {{ quantity }}
-                    {% endif %}
-                </div>
-            </a>
-        </div>
-      </div>
-      <div class="header__dropdown header__dropdown-mobile">
-        <a class="dropbtn">
-          <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
-        </a>
-        <div class="dropdown-content">
-          <a href="#">
-            <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
-          </a>
-          <a href="#">
-            <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
-        </div>
-      </div>
-      <div class="header__burger"><span></span></div>
-    </div>
-  </div>
-</header>
+      </header>
     <section class="main">
         <img src="{{ asset('custom/img/bazilik.png') }}" alt="bazilik" class="main__bazilik">
-        <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__pizza">
+        <img src="{{ asset('custom/img/sushi.png') }}" alt="sushi" class="main__sushi">
         <div class="container">
             <div class="main__wrapper">
                 <div class="main__title">
-                    {{ 'pizza.main.title'|trans|raw }}
+                     {{ 'sushi.main.title'|trans|raw }}
                 </div>
                 <div class="main__description">
-                    {{ 'pizza.main.description'|trans|raw }}
+                    {{ 'sushi.main.description'|trans|raw }}
                 </div>
                 <div class="button__wrapper">
-                    <a href="#menu" class="button button-main">{{ 'pizza.main.buttonMain'|trans }}</a>
+                    <a href="#menu" class="button button-main">
+                        {{ 'sushi.main.buttonMain'|trans }}
+                    </a>
                     <div class="button__description">
-                        {{ 'pizza.main.buttonDescription'|trans|raw }}
+                        {{ 'sushi.main.buttonDescription'|trans|raw }}
                     </div>
                 </div>
-                <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__pizza-mobile">
+                <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__sushi-mobile">
                 <div class="main__advantages">
                     <div class="advantage__item">
-                        <img src="{{ asset('custom/img/items/adv_1.png') }}" alt="fresh products">
+                        <img src="{{ asset('custom/img/items/009-sushi.svg') }}" class="advantage__sushi" alt="fresh products">
                         <div class="advantage__description">
-                            {{ 'pizza.main.freshProducts'|trans|raw }}
+                            {{ 'sushi.main.freshProducts'|trans|raw }}
                         </div>    
                     </div>
                     <div class="advantage__item">
                         <img src="{{ asset('custom/img/items/adv_2.png') }}">
                         <div class="advantage__description">
-                            {{ 'pizza.main.fastDelivery'|trans|raw }}
+                            {{ 'sushi.main.fastDelivery'|trans|raw }}
                         </div>    
                     </div>
                     <div class="advantage__item">
                         <img src="{{ asset('custom/img/items/adv_3.png') }}" alt="payment">
                         <div class="advantage__description">
-                            {{ 'pizza.main.paymentOnline'|trans|raw }}
+                            {{ 'sushi.main.paymentOnline'|trans|raw }}
                         </div>
                     </div>
                 </div>
@@ -209,46 +216,59 @@
     <section class="menu" id="menu">
         <div class="container">
             <div class="menu__wrapper">
-                <h2 class="menu__title">{{ 'pizza.menu.menu'|trans }}</h2>
+                <h2 class="menu__title">{{ 'sushi.menu.menu'|trans }}</h2>
                 <ul class="menu__tabs">
                     <li class="menu__tab menu__tab-active">
-                        {{ 'pizza.menu.pizza'|trans }}
-                        <div class="tab__image tab__pizza"></div>
+                        {{ 'sushi.menu.sushi'|trans }}
+                        <div class="tab__image tab__sushi"></div>
                     </li>
                     <li class="menu__tab">
-                        {{ 'pizza.menu.drinks'|trans }}
+                        {{ 'sushi.menu.drinks'|trans }}
                         <div class="tab__image tab__soda"></div>
                     </li>
                 </ul>
                 <div class="menu__inner menu__inner-active">
-                    <div class="row">
-                        {% for product in products %}
-                            <div class="col-xl-3 col-lg-6 col-md-6 product__card d-flex">
-                                <div class="menu__item">
-                                    <div class="item__body">
-                                        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="pizza">
-                                        <div class="item__subtitle">{{ product.name }}</div>
-                                        <div class="item__description">{{ product.description }}</div>
-                                    </div>
-                                    <div class="item__footer">
-                                        <div class="menu__dimensions">
-                                            {% for productsDimension in product.productsDimensions %}
-                                                <div class="menu__dimension {% if loop.first %}menu__dimension-active{% endif %}">
-                                                    <div class="dimension__text" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}" data-price="{{ productsDimension.price }}">{{ productsDimension.dimension.name }}</div>
-                                                    <div class="dimension__image"></div>
+                     <ul class="nav sushi__categories sushi owl-carousel owl-theme" role="tablist">
+                        {% for category in categories %}
+                            <li class="nav-item">
+                                <a class="sushi__category nav-link {% if loop.first %}active{% endif %}" id="home-tab" data-toggle="tab" href="#category-{{ category.id }}" role="tab" aria-controls="home" aria-selected="true"> {{ category.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="tab-content w-100" id="myTabContent">
+                        {% for category, products in products %}
+                            <div class="tab-pane fade show {% if loop.first %}active{% endif %}" id="category-{{ category }}" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row m-0">
+                                    {% for product in products %}
+                                        <div class="col-xl-3 col-lg-6 col-md-6 product__card d-flex">
+                                            <div class="menu__item">
+                                                <div class="item__body">
+                                                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="pizza">
+                                                    <div class="item__subtitle">{{ product.name }}</div>
+                                                    <div class="item__description">{{ product.description }}</div>
                                                 </div>
-                                            {% endfor %}
-                                        </div>
-                                        <div class="price__wrapper">
-                                            <div class="input-group">
-                                                <input type="button" value="-" class="button-minus">
-                                                <input type="text" step="1" max="" value="1" class="quantity-field count">
-                                                <input type="button" value="+" class="button-plus">
+                                                <div class="item__footer">
+                                                    <div class="menu__dimensions">
+                                                        {% for productsDimension in product.productsDimensions %}
+                                                            <div class="menu__dimension {% if loop.first %}menu__dimension-active{% endif %}">
+                                                                <div class="dimension__text" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}" data-price="{{ productsDimension.price }}">{{ productsDimension.dimension.name }}</div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="price__wrapper">
+                                                        <div class="input-group">
+                                                            <input type="button" value="-" class="button-minus">
+                                                            <input type="text" step="1" max="" value="1" class="quantity-field count">
+                                                            <input type="button" value="+" class="button-plus">
+                                                        </div>
+                                                        <div class="price"></div>
+                                                    </div>
+                                                </div>
+                                                <button data-id="{{ product.id }}" class="button button-price add-to-cart">{{ 'sushi.menu.addToCart'|trans }}</button>
                                             </div>
-                                            <div class="price"></div>
                                         </div>
-                                    </div>
-                                    <button data-id="{{ product.id }}" class="button button-price add-to-cart">{{ 'pizza.menu.addToCart'|trans }}</button>
+                                    {% endfor %}
                                 </div>
                             </div>
                         {% endfor %}
@@ -269,7 +289,6 @@
                                             {% for productsDimension in drink.productsDimensions %}
                                                 <div class="menu__dimension {% if loop.first %}menu__dimension-active{% endif %}">
                                                     <div class="dimension__text" data-dimensionId="{{ productsDimension.dimension.id }}" data-price="{{ productsDimension.price }}" data-price="{{ productsDimension.price }}">{{ productsDimension.dimension.name }}</div>
-                                                    <div class="dimension__image"></div>
                                                 </div>
                                             {% endfor %}
                                         </div>
@@ -282,7 +301,7 @@
                                             <div class="price"></div>
                                         </div>
                                     </div>
-                                    <button data-id="{{ drink.id }}" class="button button-price add-to-cart">{{ 'pizza.menu.addToCart'|trans }}</button>
+                                    <button data-id="{{ drink.id }}" class="button button-price add-to-cart">{{ 'sushi.menu.addToCart'|trans }}</button>
                                 </div>
                             </div>
                         {% endfor %}
@@ -295,7 +314,7 @@
     <section class="delivery" id="delivery">
         <div class="container">
             <div class="delivery__wrapper">
-                <h2 class="delivery__title">{{ 'pizza.delivery.title'|trans }}</h2>
+                <h2 class="delivery__title">{{ 'sushi.delivery.title'|trans }}</h2>
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="delivery__image">
@@ -305,18 +324,18 @@
                     <div class="col-xl-6">
                         <div class="delivery__list">
                             <div class="delivery__item delivery__item-one">
-                                <div class="delivery__subtitle">{{ 'pizza.delivery.itemOne.title'|trans }}</div>
-                                <div class="delivery__description">{{ 'pizza.delivery.itemOne.description'|trans|raw }}</div>
+                                <div class="delivery__subtitle">{{ 'sushi.delivery.itemOne.title'|trans }}</div>
+                                <div class="delivery__description">{{ 'sushi.delivery.itemOne.description'|trans|raw }}</div>
                                 <img src="{{ asset('custom/img/arrow.png') }}" alt="">
                             </div>
                             <div class="delivery__item delivery__item-two">
-                                <div class="delivery__subtitle">{{ 'pizza.delivery.itemTwo.title'|trans }}</div>
-                                <div class="delivery__description">{{ 'pizza.delivery.itemTwo.description'|trans|raw }}</div>
+                                <div class="delivery__subtitle">{{ 'sushi.delivery.itemTwo.title'|trans }}</div>
+                                <div class="delivery__description">{{ 'sushi.delivery.itemTwo.description'|trans|raw }}</div>
                                 <img src="{{ asset('custom/img/arrow.png') }}" alt="">
                             </div>
                             <div class="delivery__item delivery__item-three">
-                                <div class="delivery__subtitle">{{ 'pizza.delivery.itemThree.title'|trans }}</div>
-                                <div class="delivery__description">{{ 'pizza.delivery.itemThree.description'|trans|raw }}</div>
+                                <div class="delivery__subtitle">{{ 'sushi.delivery.itemThree.title'|trans }}</div>
+                                <div class="delivery__description">{{ 'sushi.delivery.itemThree.description'|trans|raw }}</div>
                             </div>
                         </div>
                     </div>
@@ -330,7 +349,7 @@
             <div class="footer__wrapper">
                 <div class="row">
                     <div class="col-xl-2 col-lg-6 col-md-6 logo__wrapper">
-                        <img class="footer__logo" src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo">
+                        <img class="footer__logo" src="{{ asset('custom/img/sushi_logo.png') }}" alt="logo">
                     </div>
                     <div class="col-xl-3 col-lg-6 col-md-6 footer__item">
                         <div class="footer__subtitle">{{ 'footer.hours'|trans }}:</div>
@@ -392,7 +411,10 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('custom/toastr/toastr.min.js') }}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="{{ asset('custom/js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('custom/js/script.js') }}"></script>
+    <script src="{{ asset('custom/js/sushi.js') }}"></script>
     <script src="{{ asset('custom/js/cart.js') }}"></script>
 </body>
 </html>

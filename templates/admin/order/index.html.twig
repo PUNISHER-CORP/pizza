@@ -1,0 +1,56 @@
+{% extends 'admin/order/order_base.html.twig' %}
+
+{% block title %}{{ 'order.orders'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-xl-12 d-flex mb-3">
+        <h1>{{ 'order.orders'|trans }}</h1>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>{{ 'order.street'|trans }}</th>
+                        <th>{{ 'order.house'|trans }}</th>
+                        <th>{{ 'order.phone'|trans }}</th>
+                        <th>{{ 'order.payMethod'|trans }}</th>
+                        <th>{{ 'order.delivery'|trans }}</th>
+                        <th>{{ 'order.totalPrice'|trans }}</th>
+                        <th class="w-25">{{ 'global.actions'|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in pagination %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.street }}</td>
+                                <td>{{ order.house }}</td>
+                                <td>{{ order.phone }}</td>
+                                <td>{% if order.payMethod in paymentMethod|keys %}{{ paymentMethod[order.payMethod]|trans }}{% endif %}</td>
+                                <td>{% if order.delivery in deliveryMethod|keys %}{{ deliveryMethod[order.delivery]|trans }}{% endif %}</td>
+                                <td>{{ order.totalPrice }} zł</td>
+                                <td>
+                                    <a href="{{ path('admin_order_show', {'id': order.id}) }}" class="btn btn-success">{{ 'global.show'|trans }}</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">{{ 'global.emptyList'|trans }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0">
+                    {{ knp_pagination_render(pagination) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

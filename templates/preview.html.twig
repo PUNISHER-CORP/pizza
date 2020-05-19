@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'preview.pageTitle'|trans }}</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/preview.css') }}">
+</head>
+<body>
+{% include 'flash_message.html.twig' %}
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div class="logo">
+                <img src="{{ asset('custom/img/logo.png') }}" alt="logo">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="main-text">
+                    <p>{{ 'preview.mainText'|trans|raw }}</p>
+                </div>
+                <div class="description">
+                    <p>{{ 'preview.description'|trans }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center links">
+            <div class="col-xl-4 col-12 text-center mb-2">
+                <a class="btn" href="{{ path('sushi_index') }}">{{ 'preview.sushi'|trans }}</a>
+            </div>
+            <div class="col-xl-4 col-12 text-center">
+                <a class="btn" href="{{ path('pizza_index') }}">{{ 'preview.pizza'|trans }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="{{ asset('custom/js/preview.js') }}"></script>
+</body>
+</html>

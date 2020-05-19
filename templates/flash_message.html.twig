@@ -1,0 +1,32 @@
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="popup popup-active">
+    <div class="popup__gratitude gratitude popup__gratitude-active">
+        <div class="popup__container">
+            <div class="gratitude__header">
+                <div class="popup__close">
+                    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+                </div>
+            </div>
+            <div class="gratitude__title popup-title">{{ 'popup.gratitude.title'|trans|raw }}</div>
+            <div class="gratitude__description">{{ 'popup.gratitude.description'|trans|raw }}</div>
+            <div class="gratitude__badge">
+                <div class="badge"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('danger') %}
+    <div class="popup popup-active">
+        <div class="popup__gratitude gratitude popup__gratitude-active">
+            <div class="popup__container">
+                <div class="gratitude__header">
+                    <div class="popup__close">
+                        <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="gratitude__title popup-title">{{ 'popup.gratitude.error'|trans }}</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

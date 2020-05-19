@@ -36,6 +36,20 @@ class ProductRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+		public function getProductsByCategories()
+		{
+				$qb = $this->createQueryBuilder('p');
+
+				$qb
+						->innerJoin('p.productsCategories', 'ppc')
+						->innerJoin('ppc.category', 'ppcc')
+						->groupBy('ppc.category')
+				;
+
+				dd($qb->getQuery()->getResult());
+				return $qb->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
