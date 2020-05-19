@@ -1,10 +1,10 @@
 {% extends 'admin/order/order_base.html.twig' %}
 
-{% block title %}{{ 'order.orders'|trans }}{% endblock %}
+{% block title %}{{ 'adminOrder.orders'|trans }}{% endblock %}
 
 {% block content %}
     <div class="col-xl-12 d-flex mb-3">
-        <h1>{{ 'order.orders'|trans }}</h1>
+        <h1>{{ 'adminOrder.orders'|trans }}</h1>
     </div>
 
     <div class="col-12">
@@ -14,12 +14,13 @@
                     <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>{{ 'order.street'|trans }}</th>
-                        <th>{{ 'order.house'|trans }}</th>
-                        <th>{{ 'order.phone'|trans }}</th>
-                        <th>{{ 'order.payMethod'|trans }}</th>
-                        <th>{{ 'order.delivery'|trans }}</th>
-                        <th>{{ 'order.totalPrice'|trans }}</th>
+                        <th>{{ 'adminOrder.date'|trans }}</th>
+                        <th>{{ 'adminOrder.street'|trans }}</th>
+                        <th>{{ 'adminOrder.house'|trans }}</th>
+                        <th>{{ 'adminOrder.phone'|trans }}</th>
+                        <th>{{ 'adminOrder.payMethod'|trans }}</th>
+                        <th>{{ 'adminOrder.delivery'|trans }}</th>
+                        <th>{{ 'adminOrder.totalPrice'|trans }}</th>
                         <th class="w-25">{{ 'global.actions'|trans }}</th>
                     </tr>
                     </thead>
@@ -27,6 +28,7 @@
                         {% for order in pagination %}
                             <tr>
                                 <td>{{ order.id }}</td>
+                                <td>{{ order.orderDate|date('H:i:s d-m-Y') }}</td>
                                 <td>{{ order.street }}</td>
                                 <td>{{ order.house }}</td>
                                 <td>{{ order.phone }}</td>

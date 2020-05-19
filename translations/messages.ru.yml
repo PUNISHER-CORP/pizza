@@ -42,25 +42,26 @@ product:
   sushi: 'Суши'
   drinks: 'Напитки'
 
-order:
+adminOrder:
   orders: 'Заказы'
   order: 'Заказ'
   totalPrice: 'Сумма заказа'
-  payu: 'Płatność online'
-  cash: 'Płatność na miejscu'
-  inPlace: 'Odbiór na miejscu'
-  delivery: 'Dowóz'
-  street: 'Ulica'
-  house: 'Nr domu'
-  flat: 'Nr localu'
-  floor: 'Piętro'
-  name: 'Imię'
-  surname: 'Nazwisko'
-  email: 'Email'
-  phone: 'Numer telefonu'
-  notes: 'Uwagi do zamówienia'
-  payMethod: 'Metoda płatności'
-  deliveryMethod: 'Rodzaj dostawy'
+  payu: 'Оплата онлайн'
+  cash: 'Оплата на месте'
+  inPlace: 'Самовывоз'
+  delivery: 'Доставка'
+  street: 'Улица'
+  house: 'Номер дома'
+  flat: 'Номер квартиры'
+  floor: 'Этаж'
+  name: 'Имя'
+  surname: 'Фамилия'
+  email: 'Е-мейл'
+  phone: 'Номер телефона'
+  notes: 'Замечания к заказу'
+  payMethod: 'Метод оплаты'
+  deliveryMethod: 'Способ доставки'
+  date: 'Дата'
 
 orderProduct:
   orderProducts: 'Продукты заказа'
@@ -72,9 +73,6 @@ orderProduct:
 email:
   confirmRegistration:
     subject: 'Подтверждение регистрации'
-
-admin:
-  menu:
 
 errors:
   required: 'Поле обязательное к заполнению'

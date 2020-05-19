@@ -6,6 +6,7 @@ use App\Entity\Admin\Product;
 use App\Form\Admin\ProductType;
 use App\Repository\Admin\ProductRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/product")
+ * @IsGranted("ROLE_ADMIN")
  */
 class ProductController extends AbstractController
 {

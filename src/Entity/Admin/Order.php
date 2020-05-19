@@ -220,6 +220,11 @@ class Order
 		$this->totalPrice = $totalPrice;
 	}
 
+	public function getOrderDate(): \DateTime
+	{
+		return $this->orderDate;
+	}
+
 	/**
 	 * @return Collection|Product[]
 	 */

@@ -1,6 +1,6 @@
 {% extends 'admin/order/order_base.html.twig' %}
 
-{% block title %}{{ 'order.order'|trans }}{% endblock %}
+{% block title %}{{ 'adminOrder.order'|trans }}{% endblock %}
 
 {% block content %}
     <h1>{{ 'order.order'|trans }}</h1>
@@ -14,51 +14,55 @@
                             <td>{{ order.id }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.street'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.date'|trans }}</th>
+                            <td>{{ order.orderDate|date('H:i:s d-m-Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">{{ 'adminOrder.street'|trans }}</th>
                             <td>{{ order.street }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.house'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.house'|trans }}</th>
                             <td>{{ order.house }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.flat'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.flat'|trans }}</th>
                             <td>{{ order.flat }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.floor'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.floor'|trans }}</th>
                             <td>{{ order.floor }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.phone'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.phone'|trans }}</th>
                             <td>{{ order.phone }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.name'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.name'|trans }}</th>
                             <td>{{ order.name }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.surname'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.surname'|trans }}</th>
                             <td>{{ order.surname }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.email'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.email'|trans }}</th>
                             <td>{{ order.email }}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.payMethod'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.payMethod'|trans }}</th>
                             <td>{% if order.payMethod in paymentMethod|keys %}{{ paymentMethod[order.payMethod]|trans }}{% endif %}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.deliveryMethod'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.deliveryMethod'|trans }}</th>
                             <td>{% if order.delivery in deliveryMethod|keys %}{{ deliveryMethod[order.delivery]|trans }}{% endif %}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.totalPrice'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.totalPrice'|trans }}</th>
                             <td>{{ order.totalPrice }} zł</td>
                         </tr>
                         <tr>
-                            <th class="w-25">{{ 'order.notes'|trans }}</th>
+                            <th class="w-25">{{ 'adminOrder.notes'|trans }}</th>
                             <td>{{ order.notes }}</td>
                         </tr>
                     </tbody>

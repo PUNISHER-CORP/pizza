@@ -7,6 +7,7 @@ use App\Enum\OrderEnum;
 use App\Enum\ProductType;
 use App\Repository\Admin\OrderRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin/order")
+ * @IsGranted("ROLE_ADMIN")
  */
 class OrderController extends AbstractController
 {
@@ -25,7 +27,7 @@ class OrderController extends AbstractController
 	public function index(Request $request, OrderRepository $categoryRepository, PaginatorInterface $paginator): Response
 	{
 		$pagination = $paginator->paginate(
-			$categoryRepository->findAll(),
+			$categoryRepository->findBy([], ['orderDate' => 'DESC']),
 			$request->query->getInt('page', 1),
 			self::LIMIT_PER_PAGE
 		);
