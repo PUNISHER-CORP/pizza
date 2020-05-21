@@ -3,6 +3,14 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
+                    <a href="{{ path('admin_user_index') }}" class="nav-link menu__users">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>
+                            {{ 'user.users'|trans }}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('admin_category_index') }}" class="nav-link menu__categories">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>

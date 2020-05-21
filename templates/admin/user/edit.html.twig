@@ -1,0 +1,28 @@
+{% extends 'admin/user/user_base.html.twig' %}
+
+{% block title %}{{ 'user.edit'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-12">
+        <h1>{{ 'user.add'|trans }}</h1>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                    {{ form_row(form.email) }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.surname) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.street) }}
+                    {{ form_row(form.house) }}
+                    {{ form_row(form.flat) }}
+                    {{ form_row(form.floor) }}
+                    {{ form_row(form.payMethod) }}
+                    {{ form_row(form.deliveryMethod) }}
+
+                    <a href="{{ path('admin_user_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                    <button class="btn btn-success">{{ 'global.save'|trans }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

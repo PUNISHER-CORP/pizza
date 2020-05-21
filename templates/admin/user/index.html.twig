@@ -1,0 +1,55 @@
+{% extends 'admin/user/user_base.html.twig' %}
+
+{% block title %}{{ 'user.users'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="col-xl-12 d-flex mb-3">
+        <h1>{{ 'user.users'|trans }}</h1>
+        <div class="ml-auto">
+            <a href="{{ path('admin_user_new') }}" class="btn btn-success">{{ 'global.add'|trans }}</a>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{ 'user.email'|trans }}</th>
+                            <th>{{ 'user.name'|trans }}</th>
+                            <th>{{ 'user.surname'|trans }}</th>
+                            <th>{{ 'user.roles'|trans }}</th>
+                            <th class="w-25">{{ 'global.actions'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in pagination %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.surname }}</td>
+                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td>
+                                <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="btn btn-success">{{ 'global.show'|trans }}</a>
+                                <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">{{ 'global.emptyList'|trans }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0">
+                    {{ knp_pagination_render(pagination) }}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

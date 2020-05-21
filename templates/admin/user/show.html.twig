@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'user.user'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ 'user.user'|trans }}</h1>
+    <div class="col-12 product__show">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th class="w-25">{{ 'global.id'|trans }}</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.name'|trans }}</th>
+                        <td>{{ user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.surname'|trans }}</th>
+                        <td>{{ user.surname }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.email'|trans }}</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.street'|trans }}</th>
+                        <td>{{ user.street }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.house'|trans }}</th>
+                        <td>{{ user.house }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.flat'|trans }}</th>
+                        <td>{{ user.flat }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.floor'|trans }}</th>
+                        <td>{{ user.floor }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.phone'|trans }}</th>
+                        <td>{{ user.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'adminOrder.payMethod'|trans }}</th>
+                        <td>{% if user.payMethod in paymentMethod|keys %}{{ paymentMethod[user.payMethod]|trans }}{% endif %}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">{{ 'user.deliveryMethod'|trans }}</th>
+                        <td>{% if user.deliveryMethod in deliveryMethod|keys %}{{ deliveryMethod[user.deliveryMethod]|trans }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <a href="{{ path('admin_user_index') }}" class="btn btn-warning">{{ 'global.returnToList'|trans }}</a>
+                <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-primary">{{ 'global.edit'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
