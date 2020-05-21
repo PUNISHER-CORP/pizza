@@ -1,49 +1,27 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <body class="hold-transition login-page">
-        <div class="login-box">
-            <div class="card">
-                <div class="card-body login-card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
-                    <form method="post">
-                        {% if error %}
-                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                        {% endif %}
-
-                        {% if app.user %}
-                            <div class="mb-3">
-                                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                            </div>
-                        {% endif %}
-
-                        <div class="input-group mb-3">
-                            <input type="email" name="email" class="form-control" placeholder="Email" value="{{ last_username }}">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-                        <div class="row">
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="popup__container">
+    <div class="popup__header">
+        <div class="popup__title popup-title">Zaloguj się</div>
+        <div class="popup__close">
+            <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
         </div>
-    </body>
-{% endblock %}
-
+    </div>
+    <div class="popup__body">
+        <form action="{{ path('app_login') }}" method="POST"  id="login_form">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <input type="hidden" name="route" value="{{ csrf_token('authenticate') }}">
+            <div class="popup__email">
+                <label for="email" class="popup__label">E - mail</label>
+                <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">
+            </div>
+            <div class="popup__password">
+                <label for="password" class="popup__label">Hasło</label>
+                <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">
+            </div>
+            <div class="popup__forget">
+                <a href="#">Zapomniałeś hasła?</a>
+            </div>
+            <button type="submit" id="ajax_login" class="button button-login">Załoguj się</button>
+        </form>
+    </div>
+    <a href="#" class="popup__register-link" >Nie mam konta</a>
+</div>

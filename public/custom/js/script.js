@@ -77,3 +77,47 @@ $(document).ready(function () {
         $('.popup__register').removeClass('popup__register-active');
     });
 });
+
+$(document).ready(function ($) {
+    $(document).on('submit', '#login_form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+
+        $.ajax({
+            url: $form.prop('action'),
+            type: $form.prop('method'),
+            data: $form.serialize(),
+            success: function (response) {
+                if ('' !== response.url) {
+                    window.location.href = response.url;
+                } else {
+                    $('.login_error')
+                        .addClass('login_error-active')
+                        .text(response.message);
+                }
+            }
+        });
+    });
+})
+
+$(document).ready(function ($) {
+    $(document).on('submit', '#register_form', function (e) {
+        e.preventDefault();
+        let $form = $(this);
+
+        $.ajax({
+            url: $form.prop('action'),
+            type: $form.prop('method'),
+            data: $form.serialize(),
+            success: function (response) {
+                if ('' !== response.url) {
+                    window.location.href = response.url;
+                } else {
+                    $('.login_error')
+                        .addClass('login_error-active')
+                        .text(response.message);
+                }
+            }
+        });
+    });
+})

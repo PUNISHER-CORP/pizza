@@ -296,6 +296,7 @@ label .invalid-feedback {
 }
 
 .header__login,
+.header__logout,
 .header__cart {
   display: block;
   width: 30px;
@@ -893,6 +894,15 @@ input[type="text"] {
 .popup__gratitude-active,
 .popup__cart-active {
   display: block;
+}
+
+.login_error {
+  display: none;
+}
+
+.login_error-active {
+  display: block;
+  color: red;
 }
 
 .popup__register .popup__password {
@@ -1832,11 +1842,13 @@ input[type="text"] {
   }
 
   .header__login,
+  .header__logout,
   .header__cart {
     margin-left: 0;
   }
 
   .header__login img,
+  .header__logout img,
   .header__cart img {
     width: 25px;
     height: 25px;
@@ -1846,7 +1858,8 @@ input[type="text"] {
     height: 30px;
   }
 
-  .header__login {
+  .header__login,
+  .header__logout {
     margin-right: 28px;
   }
 

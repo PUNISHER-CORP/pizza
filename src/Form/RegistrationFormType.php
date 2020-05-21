@@ -25,11 +25,6 @@ class RegistrationFormType extends AbstractType
                     new NotBlank()
                 ]
             ])
-            ->add('name', TextType::class, [
-                'constraints' => [
-                    new NotBlank()
-                ]
-            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
