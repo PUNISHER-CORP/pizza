@@ -140,6 +140,19 @@ order:
 
 login:
   error: 'Błędny email lub hasło'
+  title: 'Zaloguj się'
+  email: 'E - mail'
+  password: 'Hasło'
+  forgotPassword: 'Zapomniałeś hasła?'
+  dontHaveAccount: 'Nie mam konta'
+  button: 'Zaloguj się'
 
 register:
   success: 'Użytkownik został poprawnie zarejestrowany!'
+  email: 'E - mail'
+  password: 'Hasło'
+  repeatPassword: 'Powtórz hasło'
+  createAccount: 'Załóż konto'
+  haveAccount: 'Mam już konto'
+  agreeDesc: "Klikając 'Załóż konto' wyrażasz zgodę <br> na naszą"
+  agreeLink: 'Politykę Prywatności'

@@ -19,7 +19,7 @@
         <div class="popup__login">
             <div class="popup__container">
               <div class="popup__header">
-                <div class="popup__title popup-title">Zaloguj się</div>
+                <div class="popup__title popup-title">{{ 'login.title'|trans }}</div>
                 <div class="popup__close">
                   <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
                 </div>
@@ -31,20 +31,20 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <input type="hidden" name="route" value="sushi_index">
                     <div class="popup__email">
-                      <label for="email" class="popup__label">E - mail</label>
-                      <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">
+                      <label for="email" class="popup__label">{{ 'login.email'|trans }}</label>
+                      <input type="email" name="email" class="popup__input">
                     </div>
                     <div class="popup__password">
-                      <label for="password" class="popup__label">Hasło</label>
-                      <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">
+                      <label for="password" class="popup__label">{{ 'login.password'|trans }}</label>
+                      <input type="password" name="password" class="popup__input">
                     </div>
                     <div class="popup__forget">
-                      <a href="#">Zapomniałeś hasła?</a>
+                      <a href="#">{{ 'login.forgotPassword'|trans }}</a>
                     </div>
-                    <button type="submit" id="ajax_login" class="button button-login">Załoguj się</button>
+                    <button type="submit" id="ajax_login" class="button button-login">{{ 'login.button'|trans }}</button>
                 </form>
               </div>
-              <a href="#" class="popup__register-link" >Nie mam konta</a>
+              <a href="#" class="popup__register-link">{{ 'login.dontHaveAccount'|trans }}</a>
             </div>
         </div>
 

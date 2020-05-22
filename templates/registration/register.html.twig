@@ -1,6 +1,6 @@
 <div class="popup__container">
     <div class="popup__header">
-        <div class="popup__title popup-title">Załóż konto</div>
+        <div class="popup__title popup-title">{{ 'register.createAccount'|trans }}</div>
         <div class="popup__close">
             <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
         </div>
@@ -9,25 +9,24 @@
         <ul class="register_error"></ul>
         {{ form_start(form, {attr: { id: 'register_form'}}) }}
             <div class="popup__email">
-                <label for="email" class="popup__label">E - mail</label>
+                <label for="email" class="popup__label">{{ 'register.email'|trans }}</label>
                 {{ form_widget(form.email) }}
             </div>
             <div class="mb-3">
-                <label for="password" class="popup__label">Hasło</label>
+                <label for="password" class="popup__label">{{ 'register.password'|trans }}</label>
                 {{ form_widget(form.plainPassword.first) }}
             </div>
             <div class="popup__password">
-                <label for="password" class="popup__label">Powtórz hasło</label>
+                <label for="password" class="popup__label">{{ 'register.repeatPassword'|trans }}</label>
                 {{ form_widget(form.plainPassword.second) }}
             </div>
-            <button type="submit" class="button button-register">Załóż konto</button>
+            <button type="submit" class="button button-register">{{ 'register.createAccount'|trans }}</button>
             <div class="checkbox__container">
                 {{ form_widget(form.agreeTerms) }}
                 <label for="checkbox"></label>
-                <div class="checkbox__text">Klikając 'Załóż konto' wyrażasz zgodę <br>
-                    na naszą <a href="#">Politykę Prywatności</a></div>
+                <div class="checkbox__text">{{ 'register.agreeDesc'|trans|raw }} <a href="#">{{ 'register.agreeLink'|trans }}</a></div>
             </div>
         {{ form_end(form) }}
     </div>
-    <a href="#" class="popup__login-link" >Mam już konto</a>
+    <a href="#" class="popup__login-link" >{{ 'register.haveAccount'|trans }}</a>
 </div>
