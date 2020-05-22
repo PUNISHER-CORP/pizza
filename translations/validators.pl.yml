@@ -1,2 +1,6 @@
 login:
   error: 'Błędny email lub hasło'
+
+There is already an account with this email: 'Użytkownik z takim email już istnieje'
+The password fields must match.: 'Hasła nie podpowiadają'
+You must agree terms: 'Akceptacja regulaminu jest obowiązkowa'

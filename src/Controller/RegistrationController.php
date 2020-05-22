@@ -6,10 +6,12 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Service\EmailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -23,41 +25,67 @@ class RegistrationController extends AbstractController
      */
     private $emailService;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService)
+	/**
+	 * @var TranslatorInterface
+	 */
+    private $translator;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, EmailService $emailService, TranslatorInterface $translator)
     {
         $this->passwordEncoder = $passwordEncoder;
         $this->emailService = $emailService;
+        $this->translator = $translator;
     }
 
-    /**
-     * @Route("/register", name="app_register")
-     */
-    public function register(Request $request): Response
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+	/**
+	 * @Route("/register-ajax", name="app_register_ajax", options={"expose":"true"})
+	 */
+	public function registerAjax(Request $request): Response
+	{
+		$user = new User();
+		$form = $this->createForm(RegistrationFormType::class, $user, [
+			'action' => $this->generateUrl('app_register_ajax'),
+			'method' => 'POST'
+		]);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $this->passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+		$form->handleRequest($request);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+		if ($request->isXmlHttpRequest()) {
 
-            $this->emailService->confirmRegistration($user);
+			if (!$form->isValid()) {
+				$errorCollection = [];
+				foreach ($form->getErrors(true) as $error) {
+					$errorCollection[] = $error->getMessage();
+				}
 
-            return $this->redirectToRoute('app_login');
-        }
+				return new JsonResponse([
+					'errors' => $errorCollection,
+				]);
+			}
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+			if ($form->isSubmitted() && $form->isValid()) {
+				// encode the plain password
+				$user->setPassword(
+					$this->passwordEncoder->encodePassword(
+						$user,
+						$form->get('plainPassword')->getData()
+					)
+				);
+
+				$entityManager = $this->getDoctrine()->getManager();
+				$entityManager->persist($user);
+				$entityManager->flush();
+
+				$this->emailService->confirmRegistration($user);
+
+				return new JsonResponse([
+					'success' => $this->translator->trans('register.success')
+				]);
+			}
+		}
+
+		return $this->render('registration/register.html.twig', [
+			'form' => $form->createView(),
+		]);
     }
 }

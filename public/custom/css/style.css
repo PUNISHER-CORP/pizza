@@ -896,13 +896,20 @@ input[type="text"] {
   display: block;
 }
 
-.login_error {
+.login_error, .login_success {
   display: none;
 }
 
 .login_error-active {
   display: block;
   color: red;
+  margin-bottom: 10px;
+}
+
+.login_success-active {
+  display: block;
+  color: green;
+  margin-bottom: 10px;
 }
 
 .popup__register .popup__password {
@@ -914,11 +921,11 @@ input[type="text"] {
   margin-bottom: 40px;
 }
 
-.popup__register .checkbox__container #checkbox {
+.popup__register .checkbox__container .checkbox {
   display: none;
 }
 
-.popup__register .checkbox__container #checkbox + label {
+.popup__register .checkbox__container .checkbox + label {
   display: block;
   text-align: center;
   width: 33px;
@@ -930,14 +937,14 @@ input[type="text"] {
   cursor: pointer;
 }
 
-.popup__register .checkbox__container #checkbox + label:before {
+.popup__register .checkbox__container .checkbox:not(:checked) + label:before {
+  display: none;
+}
+
+.popup__register .checkbox__container .checkbox + label:before {
   content: '✔';
   font-size: 20px;
   color: #fff;
-}
-
-.popup__register .checkbox__container #checkbox:checked + label:before {
-  display: none;
 }
 
 .popup__register .checkbox__container .checkbox__text {

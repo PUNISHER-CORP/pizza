@@ -140,3 +140,6 @@ order:
 
 login:
   error: 'Błędny email lub hasło'
+
+register:
+  success: 'Użytkownik został poprawnie zarejestrowany!'

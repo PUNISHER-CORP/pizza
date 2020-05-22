@@ -23,7 +23,10 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' => [
                     new NotBlank()
-                ]
+                ],
+				'attr' => [
+					'class' => 'popup__input'
+				]
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -31,12 +34,26 @@ class RegistrationFormType extends AbstractType
                     new IsTrue([
                         'message' => 'You must agree terms'
                     ])
-                ]
+                ],
+				'attr' => [
+					'class' => 'checkbox'
+				],
+				'label' => false
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => [
+                	'label' => 'Password',
+					'attr' => [
+						'class' => 'popup__input'
+					]
+				],
+                'second_options' => [
+                	'label' => 'Repeat Password',
+					'attr' => [
+						'class' => 'popup__input'
+					]
+				],
                 'invalid_message' => 'The password fields must match.',
                 'constraints' => [
                     new NotBlank()

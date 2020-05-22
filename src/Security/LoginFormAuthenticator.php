@@ -108,7 +108,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
 		if ($request->isXmlHttpRequest()) {
 			return new JsonResponse([
-				'message' => $exception->getMessage(),
+				'message' => $this->translator->trans('login.error'),
 				'url' => ''
 			]);
 		}

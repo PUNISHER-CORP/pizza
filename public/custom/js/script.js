@@ -91,7 +91,7 @@ $(document).ready(function ($) {
                 if ('' !== response.url) {
                     window.location.href = response.url;
                 } else {
-                    $('.login_error')
+                    $('.login_success')
                         .addClass('login_error-active')
                         .text(response.message);
                 }
@@ -110,12 +110,21 @@ $(document).ready(function ($) {
             type: $form.prop('method'),
             data: $form.serialize(),
             success: function (response) {
-                if ('' !== response.url) {
-                    window.location.href = response.url;
+                if (response.success) {
+                    $('.login_success')
+                        .addClass('login_success-active')
+                        .text(response.success);
+
+                    $('.popup__login').addClass('popup__login-active');
+                    $('.popup__register').removeClass('popup__register-active');
                 } else {
-                    $('.login_error')
+                    let errors = '';
+                    $(response.errors).each(function (key, item) {
+                        errors += '<li>' + item + '</li>';
+                    });
+                    $('.register_error')
                         .addClass('login_error-active')
-                        .text(response.message);
+                        .html(errors);
                 }
             }
         });

@@ -26,6 +26,7 @@
               </div>
               <div class="popup__body">
                   <div class="login_error"></div>
+                  <div class="login_success"></div>
                 <form action="{{ path('app_login') }}" method="POST"  id="login_form">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <input type="hidden" name="route" value="sushi_index">
@@ -48,35 +49,8 @@
         </div>
 
         <div class="popup__register">
-        <div class="popup__container">
-            <div class="popup__header">
-                <div class="popup__title popup-title">Załóż konto</div>
-                <div class="popup__close">
-                    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
-                </div>
-            </div>
-            <div class="popup__body">
-                <form action="/" method="POST">
-                    <div class="popup__email">
-                      <label for="email" class="popup__label">E - mail</label>
-                      <input type="email" name="email" class="popup__input" placeholder="Twój adres e - mail">
-                    </div>
-                    <div class="popup__password">
-                      <label for="password" class="popup__label">Hasło</label>
-                      <input type="password" name="password" class="popup__input" placeholder="hasło do Twojego konta">
-                    </div>
-                    <button class="button button-register">Załóż konto</button>
-                    <div class="checkbox__container">
-                      <input type="checkbox" id="checkbox"/>
-                      <label for="checkbox"></label>
-                      <div class="checkbox__text">Klikając 'Załóż konto' wyrażasz zgodę <br>
-                        na naszą <a href="#">Politykę Prywatności</a></div>
-                    </div>
-                </form>
-            </div>
-            <a href="#" class="popup__login-link" >Mam już konto</a>
+            {{ render(controller('App\\Controller\\RegistrationController::registerAjax')) }}
         </div>
-    </div>
 {#    <div class="popup__gratitude gratitude">#}
 {#    <div class="popup__container">#}
 {#    <div class="gratitude__header">#}
