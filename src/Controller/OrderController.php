@@ -103,7 +103,7 @@ class OrderController extends AbstractController
 
 				$entityManager = $this->getDoctrine()->getManager();
 
-				if ($form->get('saveData')->getData()) {
+				if ($form->has('saveData') && $form->get('saveData')->getData()) {
 					$data = $form->getData();
 
 					$user->setName($data->getName());
@@ -117,6 +117,7 @@ class OrderController extends AbstractController
 					$user->setPayMethod($data->getPayMethod());
 					$entityManager->persist($user);
 				}
+
 
 				$entityManager->persist($order);
 				$entityManager->flush();

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('custom/css/style.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="base__reset">
+<div class="container">
+    <header class="order__main__header">
+        <a href="{{ path('preview') }}" class="back__link">
+            <img src="{{ asset('custom/img/items/back.svg') }}" alt="back">
+            {{ 'order.backToMain'|trans }}
+        </a>
+        <a href="{{ path('preview') }}" class="order__logo">
+            <img src="{{ asset('custom/img/logo.png') }}" alt="logo">
+        </a>
+    </header>
+    <section class="w-100">
+        {% block content %}{% endblock %}
+    </section>
+</div>
+</body>
+</html>

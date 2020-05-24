@@ -1,0 +1,27 @@
+{% extends 'base_reset.html.twig' %}
+
+{% block title %}{{ 'reset.title'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="popup__reset popup__reset-active">
+        <div class="popup__container">
+            <div class="popup__header">
+                <div class="popup__title popup-title">{{ 'reset.title'|trans }}</div>
+            </div>
+            <div class="popup__body">
+                {% for flashError in app.flashes('reset_password_error') %}
+                    <div class="login_error-active">{{ flashError }}</div>
+                {% endfor %}
+                {{ form_start(requestForm) }}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('reset') }}">
+                    <div class="popup__email">
+                        {{ form_label(requestForm.email) }}
+                        {{ form_widget(requestForm.email) }}
+                        {{ form_errors(requestForm.email) }}
+                    </div>
+                    <button type="submit" class="button button-login">{{ 'reset.buttonReset'|trans }}</button>
+                {{ form_end(requestForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

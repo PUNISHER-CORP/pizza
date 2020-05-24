@@ -148,6 +148,20 @@ login:
   dontHaveAccount: 'Nie mam konta'
   button: 'Zaloguj się'
 
+reset:
+  title: 'Zmiana hasła'
+  buttonReset: 'Zmień'
+  checkEmail: 'Został wysłany e-mail, który zawiera link, który można kliknąć, aby zresetować hasło.'
+  notEmail:
+    part1: 'Jeśli nie otrzymujesz e-maila, sprawdź folder spam lub'
+    part2: 'spróbuj jeszcze raz.'
+  emailText:
+    part1: 'Aby zresetować hasło, kliknij'
+    part2: 'w ten link'
+  password:
+    new: 'Nowe Hasło'
+    repeat: 'Powtórz Hasło'
+
 register:
   success: 'Użytkownik został poprawnie zarejestrowany!'
   email: 'E - mail'

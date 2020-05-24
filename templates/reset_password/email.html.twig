@@ -1,0 +1,4 @@
+<p>
+    {{ 'reset.emailText.part1'|trans }}
+    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ 'reset.emailText.part2'|trans }}</a>
+</p>

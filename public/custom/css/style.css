@@ -8,6 +8,14 @@ body {
   background-size: contain;
 }
 
+.base__reset {
+  font-family: "Montserrat-Regular";
+  color: #fff;
+  background-image: url("../img/background.jpg");
+  background-repeat: repeat-y;
+  background-size: 100% 100%;
+}
+
 a {
   text-decoration: none;
   color: #fff;
@@ -872,6 +880,7 @@ input[type="text"] {
 }
 
 .popup__login,
+.popup__reset,
 .popup__register,
 .popup__gratitude,
 .popup__cart {
@@ -892,6 +901,7 @@ input[type="text"] {
 .popup__login-active,
 .popup__register-active,
 .popup__gratitude-active,
+.popup__reset-active,
 .popup__cart-active {
   display: block;
 }
@@ -1584,6 +1594,7 @@ input[type="text"] {
   border-radius: 100%;
   background-color: #A4D24E;
   position: relative;
+  display: block!important;
 }
 
 .popup__gratitude .gratitude__badge .badge:before {
@@ -2108,6 +2119,7 @@ input[type="text"] {
   .popup__login,
   .popup__register,
   .popup__gratitude,
+  .popup__reset,
   .popup__cart {
     padding: 30px;
     width: 350px;
@@ -2124,6 +2136,7 @@ input[type="text"] {
 
   .popup .button-login,
   .popup .button-register,
+  .popup .button-reset,
   .popup .button-cart {
     height: 70px;
     width: 100%;

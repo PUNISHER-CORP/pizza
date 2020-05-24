@@ -64,6 +64,7 @@ $(document).ready(function () {
         $('.popup__login').removeClass('popup__login-active');
         $('.popup__register').removeClass('popup__register-active');
         $('.popup__cart').removeClass('popup__cart-active');
+        $('.popup__gratitude').removeClass('popup__gratitude-active');
         $('.popup').removeClass('popup-active');
     });
 

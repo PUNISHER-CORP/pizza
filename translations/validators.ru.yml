@@ -1,6 +1,7 @@
-general:
-    required: 'Значение не должно быть пустым.'
+login:
+  error: 'Błędny email lub hasło'
 
-deal:
-  images:
-    allowedTypes: 'Разрешены только изображения с расширением (.jpeg, .jpg, .png, .gif)'
+There is already an account with this email: 'Użytkownik z takim email już istnieje'
+The password fields must match.: 'Hasła nie podpowiadają'
+You must agree terms: 'Akceptacja regulaminu jest obowiązkowa'
+Please enter a password: 'Proszę podacz hasło'

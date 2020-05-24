@@ -1,0 +1,17 @@
+{% extends 'base_reset.html.twig' %}
+
+{% block title %}{{ 'reset.title'|trans }}{% endblock %}
+
+{% block content %}
+    <div class="popup__reset popup__reset-active">
+        <div class="popup__container">
+            <div class="popup__header">
+                <div class="popup__title popup-title">{{ 'reset.title'|trans }}</div>
+            </div>
+            <div class="popup__body">
+                <p>{{ 'reset.checkEmail'|trans }}</p>
+                <p>{{ 'reset.notEmail.part1'|trans }}<a href="{{ path('app_forgot_password_request') }}"> <b>{{ 'reset.notEmail.part2'|trans }}</b></a>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

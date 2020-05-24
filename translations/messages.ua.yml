@@ -28,10 +28,10 @@ footer:
 pizza:
   pageTitle: ''
   header:
-    main: 'Головна'
-    menu: 'Меню'
-    delivery: 'Доставка'
-    contact: 'Контакт'
+    main: 'Główna'
+    menu: 'Menu'
+    delivery: 'Dostawa'
+    contact: 'Kontakt'
   main:
     title: 'Najlepsza <span>pizza <br> na dowóz</span> w Słupsku'
     description: 'Stawiamy na wysoką jakość składników <br> i niepowtarzalny smak.'
@@ -60,10 +60,10 @@ pizza:
 sushi:
   pageTitle: ''
   header:
-    main: 'Головна'
-    menu: 'Меню'
-    delivery: 'Доставка'
-    contact: 'Контакт'
+    main: 'Główna'
+    menu: 'Menu'
+    delivery: 'Dostawa'
+    contact: 'Kontakt'
   main:
     title: 'Najlepsze <span>sushi <br> na dowóz</span> w Słupsku'
     description: 'Stawiamy na wysoką jakość składników <br> i niepowtarzalny smak.'
@@ -137,6 +137,37 @@ order:
     regulation: 'Regulaminu'
     introduced: 'i zapoznałem się z'
     personal: 'Polityką prywatności'
+  saveData: 'Zapisz swoje dane'
 
 login:
   error: 'Błędny email lub hasło'
+  title: 'Zaloguj się'
+  email: 'E - mail'
+  password: 'Hasło'
+  forgotPassword: 'Zapomniałeś hasła?'
+  dontHaveAccount: 'Nie mam konta'
+  button: 'Zaloguj się'
+
+reset:
+  title: 'Zmiana hasła'
+  buttonReset: 'Zmień'
+  checkEmail: 'Został wysłany e-mail, który zawiera link, który można kliknąć, aby zresetować hasło.'
+  notEmail:
+    part1: 'Jeśli nie otrzymujesz e-maila, sprawdź folder spam lub'
+    part2: 'spróbuj jeszcze raz.'
+  emailText:
+    part1: 'Aby zresetować hasło, kliknij'
+    part2: 'w ten link'
+  password:
+    new: 'Nowe Hasło'
+    repeat: 'Powtórz Hasło'
+
+register:
+  success: 'Użytkownik został poprawnie zarejestrowany!'
+  email: 'E - mail'
+  password: 'Hasło'
+  repeatPassword: 'Powtórz hasło'
+  createAccount: 'Załóż konto'
+  haveAccount: 'Mam już konto'
+  agreeDesc: "Klikając 'Załóż konto' wyrażasz zgodę <br> na naszą"
+  agreeLink: 'Politykę Prywatności'
