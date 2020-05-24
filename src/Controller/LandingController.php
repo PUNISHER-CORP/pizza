@@ -48,7 +48,8 @@ class LandingController extends AbstractCrudController
         return $this->render('pizza.html.twig', [
             'products' => $products,
 			'drinks' => $drinks,
-			'currentLanguage' => $request->getSession()->get('_locale', 'pl')
+			'currentLanguage' => $request->getSession()->get('_locale', 'pl'),
+			'cart' => null
         ]);
     }
 
@@ -75,7 +76,8 @@ class LandingController extends AbstractCrudController
 			'products' => $productsByCategories,
 			'drinks' => $drinks,
 			'categories' => $categories,
-			'currentLanguage' => $request->getSession()->get('_locale', 'pl')
+			'currentLanguage' => $request->getSession()->get('_locale', 'pl'),
+			'cart' => null
 		]);
     }
 

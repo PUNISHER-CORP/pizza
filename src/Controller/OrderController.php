@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\DTO\Cart;
 use App\Entity\Admin\Order;
 use App\Entity\Admin\OrderProduct;
+use App\Entity\User;
 use App\Form\OrderType;
 use App\Repository\Admin\DimensionRepository;
 use App\Repository\Admin\DimensionsProductsRepository;
@@ -60,23 +61,31 @@ class OrderController extends AbstractController
 	}
 
 	/**
-	 * @Route("/order", name="order__page", methods={"GET","POST"})
+	 * @Route("/order/{type}", name="order__page", methods={"GET","POST"})
 	 */
-	public function orderPage(Request $request): Response
+	public function orderPage(Request $request, string $type): Response
 	{
-		$referer = $request->headers->get('referer');
-		$previewRoute = $this->generateUrl('preview');
+		if($type == 'sushi') {
+			$referer = $this->generateUrl('sushi_index');
+		}else {
+			$referer = $this->generateUrl('pizza_index');
+		}
+
 		$cartSession = $this->cartService->getProducts();
 
 		if (!$cartSession) {
-			return new RedirectResponse($previewRoute);
+			return new RedirectResponse($referer);
 		}
 
 		$cartDto = new Cart($this->productRepository, $this->dimensionRepository);
 		$cartDto->setProducts($cartSession['products']);
 
 		$order = new Order();
-		$form = $this->createForm(OrderType::class, $order);
+		/** @var User $user */
+		$user = $this->getUser();
+		$form = $this->createForm(OrderType::class, $order, [
+			'user' => $user
+		]);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
@@ -91,17 +100,34 @@ class OrderController extends AbstractController
 					$order->addOrderProduct($orderProduct);
 				}
 				$order->setTotalPrice($cartDto->getTotalPrice());
+
 				$entityManager = $this->getDoctrine()->getManager();
+
+				if ($form->get('saveData')->getData()) {
+					$data = $form->getData();
+
+					$user->setName($data->getName());
+					$user->setSurname($data->getSurname());
+					$user->setStreet($data->getStreet());
+					$user->setHouse($data->getHouse());
+					$user->setFlat($data->getFlat());
+					$user->setFlat($data->getFlat());
+					$user->setPhone($data->getPhone());
+					$user->setDeliveryMethod($data->getDelivery());
+					$user->setPayMethod($data->getPayMethod());
+					$entityManager->persist($user);
+				}
+
 				$entityManager->persist($order);
 				$entityManager->flush();
 
 				$this->session->clear();
 
 				$this->addFlash('success', '');
-				return new RedirectResponse($previewRoute);
+				return new RedirectResponse($referer);
 			} catch (\Exception $e) {
 				$this->addFlash('danger', '');
-				return new RedirectResponse($previewRoute);
+				return new RedirectResponse($referer);
 			}
 		}
 

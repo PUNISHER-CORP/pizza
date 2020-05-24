@@ -67,6 +67,7 @@ class CartController extends AbstractController
 	 */
 	public function show(Request $request): Response
 	{
+		$productType = $request->get('type');
 		$cartSession = $this->cartService->getProducts();
 
 		if (!$cartSession) {
@@ -79,6 +80,7 @@ class CartController extends AbstractController
 
 		return $this->render('cart/popup.html.twig', [
 			'cart' => $cartDto,
+			'productType' => $productType
 		]);
 	}
 

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Admin\Order;
+use App\Entity\User;
 use App\Enum\OrderEnum;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -12,13 +13,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OrderType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+		/** @var User $user */
+		$user = $options['user'];
+
 		$builder
 			->add('street', TextType::class, [
 				'label' => 'order.street',
@@ -29,6 +32,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getStreet() : ''
 			])
 			->add('house', TextType::class, [
 				'label' => 'order.house',
@@ -39,6 +43,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getHouse() : ''
 			])
 			->add('flat', TextType::class, [
 				'label' => 'order.flat',
@@ -49,6 +54,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getFlat() : ''
 			])
 			->add('floor', TextType::class, [
 				'label' => 'order.floor',
@@ -56,6 +62,7 @@ class OrderType extends AbstractType
 					'placeholder' => 'order.floor',
 					'class' => 'payment__input'
 				],
+				'data' => $user ? $user->getFloor() : ''
 			])
 			->add('name', TextType::class, [
 				'label' => 'order.name',
@@ -66,6 +73,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getName() : ''
 			])
 			->add('surname', TextType::class, [
 				'label' => 'order.surname',
@@ -76,16 +84,20 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getSurname() : ''
 			])
 			->add('email', EmailType::class, [
 				'label' => 'order.email',
 				'attr' => [
 					'placeholder' => 'order.email',
-					'class' => 'payment__input'
+					'class' => 'payment__input',
+					'disabled' => $user ? true : false
 				],
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getEmail() : '',
+				'empty_data' => $user ? $user->getEmail() : '',
 			])
 			->add('phone', TextType::class, [
 				'label' => 'order.phone',
@@ -96,6 +108,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getPhone() : ''
 			])
 			->add('notes', TextareaType::class, [
 				'label' => 'order.notes',
@@ -114,6 +127,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getPayMethod() : ''
 			])
 			->add('delivery', ChoiceType::class, [
 				'label' => 'order.deliveryMethod',
@@ -126,6 +140,7 @@ class OrderType extends AbstractType
 				'constraints' => [
 					new NotBlank()
 				],
+				'data' => $user ? $user->getDeliveryMethod() : ''
 			])
 			->add('regulation', CheckboxType::class, [
 				'mapped' => false,
@@ -138,6 +153,16 @@ class OrderType extends AbstractType
 				]
 			])
 		;
+
+		if($user) {
+			$builder->add('saveData', CheckboxType::class, [
+				'mapped' => false,
+				'label' => false,
+				'attr' => [
+					'class' => 'checkbox'
+				]
+			]);
+		}
 	}
 
 	public function configureOptions(OptionsResolver $resolver)
@@ -146,7 +171,8 @@ class OrderType extends AbstractType
 			'data_class' => Order::class,
 			'attr' => [
 				'novalidate' => 'novalidate'
-			]
+			],
+			'user' => null,
 		]);
 	}
 }

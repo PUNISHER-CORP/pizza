@@ -1364,6 +1364,7 @@ input[type="text"] {
   padding: 0 36px;
   background-color: unset;
   font-size: 26px;
+  color: #fff;
 }
 
 .payment .row {
@@ -1520,6 +1521,93 @@ input[type="text"] {
 .footer__all-rights {
   margin-bottom: 50px;
 }
+
+.popup__gratitude{
+  width: 478px;
+  border-radius: 5px;
+  box-shadow: 0px 18px 46px 0 rgba(0, 0, 0, 0.68);
+  background-color: #2d2d31;
+  z-index: 102;
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 102;
+  padding: 45px 0 50px 0;
+}
+
+.popup__gratitude-active{
+  display: block;
+}
+
+.popup__gratitude {
+  max-width: 570px;
+}
+
+.popup__gratitude .gratitude__header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+}
+
+.popup__gratitude .gratitude__title {
+  font-family: "Montserrat-Bold";
+  font-size: 35px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 55px;
+  color: #fff;
+}
+
+.popup__gratitude .gratitude__description {
+  font-size: 19px;
+  margin-bottom: 50px;
+  text-align: center;
+  color: #fff;
+}
+
+.popup__gratitude .gratitude__badge {
+  width: 265px;
+  height: 265px;
+  border-radius: 100%;
+  border: 5px solid #A4D24E;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__gratitude .gratitude__badge .badge {
+  width: 220px;
+  height: 220px;
+  border-radius: 100%;
+  background-color: #A4D24E;
+  position: relative;
+}
+
+.popup__gratitude .gratitude__badge .badge:before {
+  content: '';
+  background: url("../img/items/024-tick.svg") no-repeat;
+  background-size: 130px 130px;
+  width: 130px;
+  height: 130px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.popup__gratitude-active {
+  display: block;
+}
+.popup__close {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 
 @media (min-width: 1500px) {
   .container {

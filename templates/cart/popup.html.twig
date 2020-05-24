@@ -32,7 +32,7 @@
             {{ cart.totalPrice }} zł
         </div>
     </div>
-    <a href="{{ path('order__page') }}" class="button button-cart">{{ 'cart.goToPay'|trans }}</a>
+    <a href="{{ path('order__page', {type: productType}) }}" class="button button-cart">{{ 'cart.goToPay'|trans }}</a>
 {% else %}
     <div class="empty__cart">
         {{ 'cart.empty'|trans }}

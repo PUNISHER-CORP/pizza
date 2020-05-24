@@ -16,9 +16,13 @@
                 <img src="{{ asset('custom/img/items/back.svg') }}" alt="back">
                 {{ 'order.backToMain'|trans }}
             </a>
-            <div class="order__logo">
-                <img src="{{ asset('custom/img/sushi_logo.png') }}" alt="logo">
-            </div>
+            <a href="{{ referer }}" class="order__logo">
+                {% if referer == 'sushi' %}
+                    <img src="{{ asset('custom/img/sushi_logo.png') }}" alt="logo">
+                {% else %}
+                    <img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo">
+                {% endif %}
+            </a>
         </header>
         <h2 class="order__title">
             {{ 'order.order'|trans }}
@@ -114,6 +118,16 @@
                         <div class="payment__notes">
                             {{ form_widget(form.notes) }}
                         </div>
+                        {% if app.user %}
+                            <div>
+                                <div class="checkbox__container">
+                                    {{ form_widget(form.saveData) }}
+                                    <div class="checkbox__text">
+                                        {{ 'order.saveData'|trans }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <div>
                             <div class="checkbox__container">
                                 {{ form_widget(form.regulation) }}

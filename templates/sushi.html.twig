@@ -15,7 +15,7 @@
     <title>{{ 'sushi.pageTitle'|trans }}</title>
 </head>
 <body>
-    <div class="popup">
+    <div class="popup" id="popup">
         <div class="popup__login">
             <div class="popup__container">
               <div class="popup__header">
@@ -51,33 +51,19 @@
         <div class="popup__register">
             {{ render(controller('App\\Controller\\RegistrationController::registerAjax')) }}
         </div>
-{#    <div class="popup__gratitude gratitude">#}
-{#    <div class="popup__container">#}
-{#    <div class="gratitude__header">#}
-{#    <div class="popup__close">#}
-{#    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
-{#    </div>#}
-{#    </div>#}
-{#    <div class="gratitude__title popup-title">Dziękujemy <br>#}
-{#    za zamówienie!#}
-{#    </div>#}
-{#    <div class="gratitude__description">Wkrótce kurier dostarczy zamówienie</div>#}
-{#    <div class="gratitude__badge">#}
-{#    <div class="badge"></div>            #}
-{#    </div>#}
-{#    </div>#}
-{#    </div>  #}
-    <div class="popup__cart">
-        <div class="popup__header">
-            <div class="popup__title popup-title">{{ 'popup.cart.cart'|trans }}</div>
-            <div class="popup__close">
-            <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+
+        {% include 'flash_message.html.twig' %}
+        <div class="popup__cart">
+            <div class="popup__header">
+                <div class="popup__title popup-title">{{ 'popup.cart.cart'|trans }}</div>
+                <div class="popup__close">
+                <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+                </div>
             </div>
-        </div>
-        <div class="popup__body">
-        </div>
-      </div>  
-</div>
+            <div class="popup__body">
+            </div>
+          </div>
+    </div>
     <header class="header">
         <div class="container">
           <div class="header__wrapper">
@@ -126,7 +112,7 @@
                         <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>
                     </div>
                 {% endif %}
-              <div class="header__cart">
+              <div class="header__cart" data-producttype="sushi">
                   <a class="cart__link">
                       <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
                       {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}

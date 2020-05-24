@@ -137,6 +137,7 @@ order:
     regulation: 'Regulaminu'
     introduced: 'i zapoznałem się z'
     personal: 'Polityką prywatności'
+  saveData: 'Zapisz swoje dane'
 
 login:
   error: 'Błędny email lub hasło'

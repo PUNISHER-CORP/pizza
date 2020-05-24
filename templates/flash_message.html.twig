@@ -1,5 +1,4 @@
 {% for flashMessage in app.session.flashbag.get('success') %}
-    <div class="popup popup-active">
     <div class="popup__gratitude gratitude popup__gratitude-active">
         <div class="popup__container">
             <div class="gratitude__header">
@@ -14,19 +13,24 @@
             </div>
         </div>
     </div>
-    </div>
+    <script>
+        let popup = document.getElementById("popup");
+        popup.classList.add('popup-active');
+    </script>
 {% endfor %}
 {% for flashMessage in app.session.flashbag.get('danger') %}
-    <div class="popup popup-active">
-        <div class="popup__gratitude gratitude popup__gratitude-active">
-            <div class="popup__container">
-                <div class="gratitude__header">
-                    <div class="popup__close">
-                        <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
-                    </div>
+    <div class="popup__gratitude gratitude popup__gratitude-active">
+        <div class="popup__container">
+            <div class="gratitude__header">
+                <div class="popup__close">
+                    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
                 </div>
-                <div class="gratitude__title popup-title">{{ 'popup.gratitude.error'|trans }}</div>
             </div>
+            <div class="gratitude__title popup-title">{{ 'popup.gratitude.error'|trans }}</div>
         </div>
     </div>
+    <script>
+        let popup = document.getElementById("popup");
+        popup.classList.add('popup-active');
+    </script>
 {% endfor %}

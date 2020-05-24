@@ -12,7 +12,7 @@
     <title>{{ 'pizza.pageTitle'|trans }}</title>
 </head>
 <body>
-    <div class="popup">
+    <div class="popup" id="popup">
         <div class="popup__login">
             <div class="popup__container">
                 <div class="popup__header">
@@ -26,7 +26,7 @@
                     <div class="login_success"></div>
                     <form action="{{ path('app_login') }}" method="POST"  id="login_form">
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        <input type="hidden" name="route" value="sushi_index">
+                        <input type="hidden" name="route" value="pizza_index">
                         <div class="popup__email">
                             <label for="email" class="popup__label">{{ 'login.email'|trans }}</label>
                             <input type="email" name="email" class="popup__input">
@@ -48,107 +48,94 @@
         <div class="popup__register">
             {{ render(controller('App\\Controller\\RegistrationController::registerAjax')) }}
         </div>
-{#    <div class="popup__gratitude  gratitude">#}
-{#        <div class="popup__container">#}
-{#          <div class="gratitude__header">#}
-{#            <div class="popup__close">#}
-{#              <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="gratitude__title popup-title">{{ 'popup.gratitude.title'|trans|raw }}</div>#}
-{#          <div class="gratitude__description">{{ 'popup.gratitude.description'|trans }}</div>#}
-{#          <div class="gratitude__badge">#}
-{#              <div class="badge"></div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-    <div class="popup__cart">
-        <div class="popup__header">
-            <div class="popup__title popup-title">{{ 'popup.cart.cart'|trans }}</div>
-            <div class="popup__close">
-                <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+        {% include 'flash_message.html.twig' %}
+        <div class="popup__cart">
+            <div class="popup__header">
+                <div class="popup__title popup-title">{{ 'popup.cart.cart'|trans }}</div>
+                <div class="popup__close">
+                    <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="cancel">
+                </div>
+            </div>
+            <div class="popup__body">
             </div>
         </div>
-        <div class="popup__body">
-        </div>
-    </div>
     </div>
     <header class="header">
-  <div class="container">
-    <div class="header__wrapper">
-      <div class="header__logo">
-        <a href="#"><img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo"></a>
-      </div>
-      <nav class="header__menu">
-        <ul class="header__list">
-          <li class="header__item">
-            <a href="#">{{ 'pizza.header.main'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#menu">{{ 'pizza.header.menu'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#delivery">{{ 'pizza.header.delivery'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a href="#contact">{{ 'pizza.header.contact'|trans }}</a>
-          </li>
-          <li class="header__item">
-            <a class="header__phone-mobile" href="tel:+48537235456">+48 537 235 456</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="header__right">
-        <a class="header__phone" href="tel:+48537235456">+48 537 235 456</a>
-        <div class="header__dropdown">
-          <a class="dropbtn">
-            <img src="{% if (currentLanguage == 'ua') %}{{ asset('custom/img/items/lang_ua.png') }}{% else %}{{ asset('custom/img/items/lang_pl.png') }}{% endif %}" alt="pl"> {{ currentLanguage }}
-          </a>
-          <div class="dropdown-content">
-            <a href="{{ path('change_locale', {'locale': 'pl'}) }}">
+      <div class="container">
+        <div class="header__wrapper">
+          <div class="header__logo">
+            <a href="#"><img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo"></a>
+          </div>
+          <nav class="header__menu">
+            <ul class="header__list">
+              <li class="header__item">
+                <a href="#">{{ 'pizza.header.main'|trans }}</a>
+              </li>
+              <li class="header__item">
+                <a href="#menu">{{ 'pizza.header.menu'|trans }}</a>
+              </li>
+              <li class="header__item">
+                <a href="#delivery">{{ 'pizza.header.delivery'|trans }}</a>
+              </li>
+              <li class="header__item">
+                <a href="#contact">{{ 'pizza.header.contact'|trans }}</a>
+              </li>
+              <li class="header__item">
+                <a class="header__phone-mobile" href="tel:+48537235456">+48 537 235 456</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="header__right">
+            <a class="header__phone" href="tel:+48537235456">+48 537 235 456</a>
+            <div class="header__dropdown">
+              <a class="dropbtn">
+                <img src="{% if (currentLanguage == 'ua') %}{{ asset('custom/img/items/lang_ua.png') }}{% else %}{{ asset('custom/img/items/lang_pl.png') }}{% endif %}" alt="pl"> {{ currentLanguage }}
+              </a>
+              <div class="dropdown-content">
+                <a href="{{ path('change_locale', {'locale': 'pl'}) }}">
+                  <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+                </a>
+                <a href="{{ path('change_locale', {'locale': 'ua'}) }}">
+                  <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+              </div>
+            </div>
+              {% if app.user %}
+                  <div class="header__logout">
+                      <a href="{{ path('app_logout') }}"><img src="{{ asset('custom/img/items/logout.png') }}" alt="logout"> </a>
+                  </div>
+              {% else %}
+                  <div class="header__login">
+                      <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>
+                  </div>
+              {% endif %}
+            <div class="header__cart" data-producttype="pizza">
+                <a class="cart__link">
+                  <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
+                    {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}
+                    <div class="cart__badge {% if quantity %}cart__badge-active{% endif %}">
+                        {% if quantity %}
+                          {{ quantity }}
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+          </div>
+          <div class="header__dropdown header__dropdown-mobile">
+            <a class="dropbtn">
               <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
             </a>
-            <a href="{{ path('change_locale', {'locale': 'ua'}) }}">
-              <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+            <div class="dropdown-content">
+              <a href="#">
+                <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
+              </a>
+              <a href="#">
+                <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
+            </div>
           </div>
-        </div>
-          {% if app.user %}
-              <div class="header__logout">
-                  <a href="{{ path('app_logout') }}"><img src="{{ asset('custom/img/items/logout.png') }}" alt="logout"> </a>
-              </div>
-          {% else %}
-              <div class="header__login">
-                  <a class="login__link"><img src="{{ asset('custom/img/items/user.png') }}" alt="login"> </a>
-              </div>
-          {% endif %}
-        <div class="header__cart">
-            <a class="cart__link">
-              <img src="{{ asset('custom/img/items/bag.png') }}" alt="cart">
-                {% set quantity = render(controller('App\\Controller\\CartController::getQuantityInCart')) %}
-                <div class="cart__badge {% if quantity %}cart__badge-active{% endif %}">
-                    {% if quantity %}
-                      {{ quantity }}
-                    {% endif %}
-                </div>
-            </a>
+          <div class="header__burger"><span></span></div>
         </div>
       </div>
-      <div class="header__dropdown header__dropdown-mobile">
-        <a class="dropbtn">
-          <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
-        </a>
-        <div class="dropdown-content">
-          <a href="#">
-            <img src="{{ asset('custom/img/items/lang_pl.png') }}" alt="pl"> PL
-          </a>
-          <a href="#">
-            <img src="{{ asset('custom/img/items/lang_ua.png') }}" alt="ua"> UA</a>
-        </div>
-      </div>
-      <div class="header__burger"><span></span></div>
-    </div>
-  </div>
-</header>
+    </header>
     <section class="main">
         <img src="{{ asset('custom/img/bazilik.png') }}" alt="bazilik" class="main__bazilik">
         <img src="{{ asset('custom/img/pizza.png') }}" alt="pizza" class="main__pizza">

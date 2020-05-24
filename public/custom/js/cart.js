@@ -1,8 +1,11 @@
 $(function() {
     $('.header__cart').on('click', function() {
+        let productType = $(this).data('producttype');
+
         $.ajax({
             url: Routing.generate('show_cart'),
             type: "GET",
+            data: {type: productType},
             success: function(html) {
                 $('.popup__cart .popup__body').html(html);
             },
