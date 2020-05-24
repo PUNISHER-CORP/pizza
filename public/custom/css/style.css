@@ -427,6 +427,7 @@ label .invalid-feedback {
 
 .main__advantages .advantage__item img {
   margin-right: 24px;
+  width: 68px;
 }
 
 .main__advantages .advantage__sushi {
