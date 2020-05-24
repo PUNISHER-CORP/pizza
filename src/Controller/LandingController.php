@@ -29,7 +29,7 @@ class LandingController extends AbstractCrudController
 	}
 
 	/**
-	 * @Route("/", name="preview")
+	 * @Route("/", name="preview", host="home.slupsk.pl")
 	 */
 	public function preview(): Response
 	{
@@ -38,7 +38,7 @@ class LandingController extends AbstractCrudController
 
 	/**
 	 * Pizza landing
-     * @Route("/pizza", name="pizza_index")
+     * @Route("/pizza", name="pizza_index", host="pizza.home.slupsk.pl")
      */
     public function index(Request $request): Response
     {
@@ -55,7 +55,7 @@ class LandingController extends AbstractCrudController
 
     /**
 	 * Sushi landing
-     * @Route("/sushi", name="sushi_index")
+     * @Route("/sushi", name="sushi_index", host="sushi.home.slupsk.pl")
      */
     public function landing(Request $request): Response
     {
