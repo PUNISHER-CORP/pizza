@@ -15,10 +15,12 @@
                 {{ form_start(resetForm) }}
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('reset') }}">
                 <div class="popup__email">
+                    {{ form_label(resetForm.plainPassword.first) }}
                     {{ form_widget(resetForm.plainPassword.first) }}
                     {{ form_errors(resetForm.plainPassword.first) }}
                 </div>
                 <div class="popup__email">
+                    {{ form_label(resetForm.plainPassword.second) }}
                     {{ form_widget(resetForm.plainPassword.second) }}
                     {{ form_errors(resetForm.plainPassword.second) }}
                 </div>

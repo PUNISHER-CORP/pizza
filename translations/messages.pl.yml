@@ -161,6 +161,7 @@ reset:
   password:
     new: 'Nowe Hasło'
     repeat: 'Powtórz Hasło'
+  success: 'Hasło zostało poprawnie zresetowane!'
 
 register:
   success: 'Użytkownik został poprawnie zarejestrowany!'

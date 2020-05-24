@@ -4,4 +4,6 @@ login:
 There is already an account with this email: 'Użytkownik z takim email już istnieje'
 The password fields must match.: 'Hasła nie podpowiadają'
 You must agree terms: 'Akceptacja regulaminu jest obowiązkowa'
-Please enter a password: 'Proszę podacz hasło'
+Please enter a password: 'Proszę podać hasło'
+Please enter your email: 'Proszę podać email'
+Your password should be at least {{ limit }} characters: Twoje hasło powinno być co najmniej {{ limit }} znaków

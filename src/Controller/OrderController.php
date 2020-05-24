@@ -118,7 +118,6 @@ class OrderController extends AbstractController
 					$entityManager->persist($user);
 				}
 
-
 				$entityManager->persist($order);
 				$entityManager->flush();
 
@@ -136,6 +135,7 @@ class OrderController extends AbstractController
 			'cart' => $cartDto,
 			'referer' => $referer,
 			'form' => $form->createView(),
+			'type' => $type
 		]);
 	}
 }

@@ -34,3 +34,21 @@
         popup.classList.add('popup-active');
     </script>
 {% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('reset') %}
+    <div class="popup popup-active">
+        <div class="popup__gratitude gratitude popup__gratitude-active">
+            <div class="popup__container">
+                <div class="gratitude__header">
+                    <div class="popup__close">
+                        <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
+                    </div>
+                </div>
+                <div class="gratitude__title popup-title">{{ 'reset.success'|trans|raw }}</div>
+                <div class="gratitude__badge">
+                    <div class="badge"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

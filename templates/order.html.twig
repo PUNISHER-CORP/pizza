@@ -17,7 +17,7 @@
                 {{ 'order.backToMain'|trans }}
             </a>
             <a href="{{ referer }}" class="order__logo">
-                {% if referer == 'sushi' %}
+                {% if type == 'sushi' %}
                     <img src="{{ asset('custom/img/sushi_logo.png') }}" alt="logo">
                 {% else %}
                     <img src="{{ asset('custom/img/pizza_logo.png') }}" alt="logo">

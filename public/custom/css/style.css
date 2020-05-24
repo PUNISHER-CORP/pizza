@@ -515,6 +515,7 @@ label .invalid-feedback {
   background-color: rgba(39, 40, 44, 0.6);
   position: relative;
   margin-bottom: 55px;
+  width: 100%;
 }
 
 .menu__item .item__body img {

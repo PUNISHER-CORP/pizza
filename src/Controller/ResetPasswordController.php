@@ -122,6 +122,7 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
+            $this->addFlash('reset', '');
             return $this->redirectToRoute('preview');
         }
 
@@ -152,7 +153,7 @@ class ResetPasswordController extends AbstractController
                 $e->getReason()
             ));
 
-            return $this->redirectToRoute('app_forgot_password_request', ['type' => $this->type]);
+            return $this->redirectToRoute('app_forgot_password_request');
         }
 
         $email = (new TemplatedEmail())
