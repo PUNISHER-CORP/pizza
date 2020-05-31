@@ -226,7 +226,7 @@ class Order
 	}
 
 	/**
-	 * @return Collection|Product[]
+	 * @return Collection|OrderProduct[]
 	 */
 	public function getOrderProducts(): Collection
 	{
