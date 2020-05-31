@@ -6,11 +6,13 @@ use App\DTO\Cart;
 use App\Entity\Admin\Order;
 use App\Entity\Admin\OrderProduct;
 use App\Entity\User;
+use App\Enum\OrderEnum;
 use App\Form\OrderType;
 use App\Repository\Admin\DimensionRepository;
 use App\Repository\Admin\DimensionsProductsRepository;
 use App\Repository\Admin\ProductRepository;
 use App\Service\CartService;
+use App\Service\PayUConnectorService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,12 +47,18 @@ class OrderController extends AbstractController
 	 */
 	private $session;
 
+	/**
+	 * @var PayUConnectorService
+	 */
+	private $payUConnectorService;
+
 	public function __construct(
 		ProductRepository $productRepository,
 		CartService $cartService,
 		DimensionRepository $dimensionRepository,
 		DimensionsProductsRepository $dimensionProductsRepository,
-		SessionInterface $session
+		SessionInterface $session,
+		PayUConnectorService $payUConnectorService
 	)
 	{
 		$this->productRepository = $productRepository;
@@ -58,6 +66,7 @@ class OrderController extends AbstractController
 		$this->dimensionRepository = $dimensionRepository;
 		$this->dimensionProductsRepository = $dimensionProductsRepository;
 		$this->session = $session;
+		$this->payUConnectorService = $payUConnectorService;
 	}
 
 	/**
@@ -103,9 +112,9 @@ class OrderController extends AbstractController
 
 				$entityManager = $this->getDoctrine()->getManager();
 
-				if ($form->has('saveData') && $form->get('saveData')->getData()) {
-					$data = $form->getData();
+				$data = $form->getData();
 
+				if ($form->has('saveData') && $form->get('saveData')->getData()) {
 					$user->setName($data->getName());
 					$user->setSurname($data->getSurname());
 					$user->setStreet($data->getStreet());
@@ -118,6 +127,20 @@ class OrderController extends AbstractController
 					$entityManager->persist($user);
 				}
 
+				if ($data->getPayMethod() == OrderEnum::PAYU) {
+
+					$orderPayU = $this->generateOrderForPayU($request, $referer, $data);
+					$response = \OpenPayU_Order::create($orderPayU);
+
+					dd($response);
+
+					if ('SUCCESS' != $response->getStatus()) {
+						throw new \Exception('Error during register payments.');
+					}
+
+
+				}
+
 				$entityManager->persist($order);
 				$entityManager->flush();
 
@@ -126,6 +149,7 @@ class OrderController extends AbstractController
 				$this->addFlash('success', '');
 				return new RedirectResponse($referer);
 			} catch (\Exception $e) {
+				dd($e);
 				$this->addFlash('danger', '');
 				return new RedirectResponse($referer);
 			}
@@ -137,5 +161,32 @@ class OrderController extends AbstractController
 			'form' => $form->createView(),
 			'type' => $type
 		]);
+	}
+
+	public function generateOrderForPayU(Request $request, $referer,Order $data)
+	{
+		$order['notifyUrl'] = $this->generateUrl('app_payu_notify');
+		$order['continueUrl'] = $referer;
+
+		$order['customerIp'] = $request->getClientIp();
+		$order['merchantPosId'] = \OpenPayU_Configuration::getOauthClientId() ? \OpenPayU_Configuration::getOauthClientId() : \OpenPayU_Configuration::getMerchantPosId();
+		$order['description'] = 'New order';
+		$order['currencyCode'] = 'PLN';
+		$order['totalAmount'] = $data->getTotalPrice() * 100;
+		$order['extOrderId'] = uniqid('', true);
+
+		foreach ($data->getOrderProducts() as $key => $orderProduct) {
+			$order['products'][$key]['name'] = $orderProduct->getProduct()->getName();
+			$order['products'][$key]['unitPrice'] = $orderProduct->getQuantity();
+			$order['products'][$key]['quantity'] = $orderProduct->getProductsDimensions()->getPrice() * 100;
+		}
+
+		$order['buyer']['email'] = $data->getEmail();
+		$order['buyer']['phone'] = $data->getPhone();
+		$order['buyer']['firstName'] = $data->getName();
+		$order['buyer']['lastName'] = $data->getSurname();
+		$order['buyer']['language'] = 'pl';
+
+		return $order;
 	}
 }

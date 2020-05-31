@@ -26,3 +26,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\PayUConnectorService:
+        bind:
+            $enabled: '%env(PAYU_ENABLED)%'
+            $env: '%env(PAYU_ENV)%'
+            $merchantPosId: '%env(PAYU_MERCHANT_POS_ID)%'
+            $signatureKey: '%env(PAYU_SIGNATURE_KEY)%'
+            $oauthClientId: '%env(PAYU_OAUTH_CLIENT_ID)%'
+            $oauthClientSecret: '%env(PAYU_OAUTH_CLIENT_SECRET)%'

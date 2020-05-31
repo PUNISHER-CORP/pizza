@@ -6,4 +6,4 @@ The password fields must match.: 'Hasła nie podpowiadają'
 You must agree terms: 'Akceptacja regulaminu jest obowiązkowa'
 Please enter a password: 'Proszę podać hasło'
 Please enter your email: 'Proszę podać email'
-  Your password should be at least {{ limit }} characters: Twoje hasło powinno być co najmniej {{ limit }} znaków
+Your password should be at least {{ limit }} characters: Twoje hasło powinno być co najmniej {{ limit }} znaków
