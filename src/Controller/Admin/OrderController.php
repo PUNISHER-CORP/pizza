@@ -47,7 +47,7 @@ class OrderController extends AbstractController
 	{
 		$em = $this->getDoctrine()->getManager();
 
-		if($order->getPayMethod() == OrderEnum::PAYU && $order->getOrderPayuStatus() != PayUConnectorService::ORDER_STATUS_COMPLETED ) {
+		if($order->getPayMethod() == OrderEnum::PAYU && $order->getOrderPayuId() && $order->getOrderPayuStatus() != PayUConnectorService::ORDER_STATUS_COMPLETED ) {
 			$result = \OpenPayU_Order::retrieve($order->getOrderPayuId());
 			$orderStatus = $result->getResponse()->orders[0]->status;
 			$order->setOrderPayuStatus($orderStatus);
