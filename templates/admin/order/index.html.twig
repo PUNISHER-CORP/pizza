@@ -1,6 +1,7 @@
 {% extends 'admin/order/order_base.html.twig' %}
 
 {% block title %}{{ 'adminOrder.orders'|trans }}{% endblock %}
+{% block meta %}<meta http-equiv="refresh" content="180"/>{% endblock %}
 
 {% block content %}
     <div class="col-xl-12 d-flex mb-3">
@@ -21,12 +22,12 @@
                         <th>{{ 'adminOrder.payMethod'|trans }}</th>
                         <th>{{ 'adminOrder.delivery'|trans }}</th>
                         <th>{{ 'adminOrder.totalPrice'|trans }}</th>
-                        <th class="w-25">{{ 'global.actions'|trans }}</th>
+                        <th class="w-10">{{ 'global.actions'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
                         {% for order in pagination %}
-                            <tr>
+                            <tr {% if order.showed == 1 %}class="new__order"{% endif %}>
                                 <td>{{ order.id }}</td>
                                 <td>{{ order.orderDate|date('H:i:s d-m-Y') }}</td>
                                 <td>{{ order.street }}</td>

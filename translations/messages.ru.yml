@@ -81,6 +81,11 @@ adminOrder:
   payMethod: 'Метод оплаты'
   deliveryMethod: 'Способ доставки'
   date: 'Дата'
+  orderStatus:
+    status: 'Статус оплаты'
+    pending: '<i class="fas fa-clock pending__pay"></i> Оплата в ожидании'
+    canceled: '<i class="fas fa-window-close canceled__pay"></i> Оплата отменена'
+    completed: '<i class="fas fa-check-circle success__pay"></i> Оплата завершена успешно!'
 
 orderProduct:
   orderProducts: 'Продукты заказа'

@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
     $('.header__cart').on('click', function() {
         let productType = $(this).data('producttype');
 
@@ -12,7 +12,7 @@ $(function() {
         });
     });
 
-    $(document).on('click', '.add-to-cart', function() {
+    $(document).on("click", ".add-to-cart", function() {
         let $button = $(this);
         let $cardItem = $button.closest('.menu__item');
         let productId = $button.data('id');
@@ -42,7 +42,7 @@ $(function() {
     }
 
     function normalButton($button) {
-        $button.prop("disabled", true);
+        $button.prop("disabled", false);
         $button.html('Do koszyka');
     }
 

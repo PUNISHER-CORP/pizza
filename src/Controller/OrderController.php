@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class OrderController extends AbstractController
 {
@@ -76,8 +77,10 @@ class OrderController extends AbstractController
 	{
 		if($type == 'sushi') {
 			$referer = $this->generateUrl('sushi_index');
+			$refererPayU = 'sushi_index';
 		}else {
 			$referer = $this->generateUrl('pizza_index');
+			$refererPayU = 'pizza_index';
 		}
 
 		$cartSession = $this->cartService->getProducts();
@@ -129,16 +132,25 @@ class OrderController extends AbstractController
 
 				if ($data->getPayMethod() == OrderEnum::PAYU) {
 
-					$orderPayU = $this->generateOrderForPayU($request, $referer, $data);
-					$response = \OpenPayU_Order::create($orderPayU);
+					$orderPayU = $this->generateOrderForPayU($request, $refererPayU, $data);
+					$result = \OpenPayU_Order::create($orderPayU);
 
-					dd($response);
-
-					if ('SUCCESS' != $response->getStatus()) {
+					if ('SUCCESS' != $result->getStatus()) {
 						throw new \Exception('Error during register payments.');
 					}
 
+					$orderId = $result->getResponse()->orderId;
+					$redirectUri = $result->getResponse()->redirectUri;
 
+					$order->setOrderPayuId($orderId);
+					$order->setOrderPayuStatus(PayUConnectorService::ORDER_STATUS_PENDING);
+					$entityManager->persist($order);
+					$entityManager->flush();
+
+					$this->session->clear();
+
+					$this->addFlash('success', '');
+					return new RedirectResponse($redirectUri);
 				}
 
 				$entityManager->persist($order);
@@ -150,7 +162,7 @@ class OrderController extends AbstractController
 				return new RedirectResponse($referer);
 			} catch (\Exception $e) {
 				dd($e);
-				$this->addFlash('danger', '');
+				$this->addFlash('danger', $e->getMessage());
 				return new RedirectResponse($referer);
 			}
 		}
@@ -165,8 +177,8 @@ class OrderController extends AbstractController
 
 	public function generateOrderForPayU(Request $request, $referer,Order $data)
 	{
-		$order['notifyUrl'] = $this->generateUrl('app_payu_notify');
-		$order['continueUrl'] = $referer;
+		$order['notifyUrl'] = $this->generateUrl('app_payu_notify', [], UrlGeneratorInterface::ABSOLUTE_URL);
+		$order['continueUrl'] = $this->generateUrl($referer, [], UrlGeneratorInterface::ABSOLUTE_URL);
 
 		$order['customerIp'] = $request->getClientIp();
 		$order['merchantPosId'] = \OpenPayU_Configuration::getOauthClientId() ? \OpenPayU_Configuration::getOauthClientId() : \OpenPayU_Configuration::getMerchantPosId();

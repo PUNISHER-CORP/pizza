@@ -63,3 +63,23 @@ ul.dimensions .dimension__item .delete__button {
     display: flex;
     justify-content: space-between;
 }
+
+.success__pay {
+    color: green;
+    font-size: 20px;
+}
+
+.pending__pay {
+    color: orange;
+    font-size: 20px;
+}
+
+.canceled__pay {
+    color: red;
+    font-size: 20px;
+}
+
+.new__order {
+    background-color: #dbefdb;
+}
+

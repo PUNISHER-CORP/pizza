@@ -68,13 +68,12 @@ class PayUConnectorService
 
 	}
 
-
-	public static function getStatuses(): iterable
+	public static function getStatuses(): array
 	{
 		return [
-			self::ORDER_STATUS_PENDING,
-			self::ORDER_STATUS_COMPLETED,
-			self::ORDER_STATUS_CANCELED,
+			self::ORDER_STATUS_PENDING => 'adminOrder.orderStatus.pending',
+			self::ORDER_STATUS_COMPLETED => 'adminOrder.orderStatus.completed',
+			self::ORDER_STATUS_CANCELED => 'adminOrder.orderStatus.canceled',
 		];
 	}
 }

@@ -53,6 +53,12 @@
                             <th class="w-25">{{ 'adminOrder.payMethod'|trans }}</th>
                             <td>{% if order.payMethod in paymentMethod|keys %}{{ paymentMethod[order.payMethod]|trans }}{% endif %}</td>
                         </tr>
+                        {% if order.payMethod == constant('App\\Enum\\OrderEnum::PAYU') %}
+                            <tr>
+                                <th class="w-25">{{ 'adminOrder.orderStatus.status'|trans }}</th>
+                                <td>{% if order.orderPayuStatus in orderStatuses|keys %}{{ orderStatuses[order.orderPayuStatus]|trans|raw }}{% endif %}</td>
+                            </tr>
+                        {% endif %}
                         <tr>
                             <th class="w-25">{{ 'adminOrder.deliveryMethod'|trans }}</th>
                             <td>{% if order.delivery in deliveryMethod|keys %}{{ deliveryMethod[order.delivery]|trans }}{% endif %}</td>
