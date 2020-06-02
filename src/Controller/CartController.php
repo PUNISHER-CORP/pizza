@@ -108,6 +108,19 @@ class CartController extends AbstractController
 		$products = $this->cartService->getProducts();
 
 		unset($products['products'][$productId][$dimensionId]);
+		$productsIsset = false;
+
+		foreach ($products['products'] as $product){
+			if(!empty($product)){
+				$productsIsset = true;
+			}
+		}
+
+		if(!$productsIsset) {
+			unset($products['products']);
+			unset($products['quantity']);
+		}
+
 		$this->cartService->save($products);
 
 		$referer = $request->headers->get('referer');

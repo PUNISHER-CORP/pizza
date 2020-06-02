@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Order
 {
+	const YES = 2;
+	const NO = 1;
+
 	/**
 	 * @ORM\Id()
 	 * @ORM\GeneratedValue()
@@ -80,9 +83,24 @@ class Order
 	private $totalPrice;
 
 	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $orderPayuId;
+
+	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $orderPayuStatus;
+
+	/**
 	 * @ORM\Column(type="datetime")
 	 */
 	private $orderDate;
+
+	/**
+	 * @ORM\Column(type="integer", nullable=false , options={"default" : 1})
+	 */
+	private $showed = 1;
 
 	/**
 	 * @ORM\OneToMany(targetEntity="App\Entity\Admin\OrderProduct", mappedBy="orderItem", cascade={"persist"})
@@ -220,9 +238,39 @@ class Order
 		$this->totalPrice = $totalPrice;
 	}
 
+	public function getOrderPayuId(): ?string
+	{
+		return $this->orderPayuId;
+	}
+
+	public function setOrderPayuId(?string $orderPayuId): void
+	{
+		$this->orderPayuId = $orderPayuId;
+	}
+
+	public function getOrderPayuStatus(): ?string
+	{
+		return $this->orderPayuStatus;
+	}
+
+	public function setOrderPayuStatus(?string $orderPayuStatus): void
+	{
+		$this->orderPayuStatus = $orderPayuStatus;
+	}
+
 	public function getOrderDate(): \DateTime
 	{
 		return $this->orderDate;
+	}
+
+	public function getShowed(): int
+	{
+		return $this->showed;
+	}
+
+	public function setShowed(int $showed): void
+	{
+		$this->showed = $showed;
 	}
 
 	/**

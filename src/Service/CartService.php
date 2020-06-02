@@ -26,9 +26,9 @@ class CartService
      */
     private $security;
 
-		/**
-		 * @var string
-		 */
+	/**
+	 * @var string
+	 */
     private $currentLanguage;
 
     public function __construct(SessionInterface $sessionStorage, TranslatorInterface $translator, Security $security)
@@ -36,7 +36,7 @@ class CartService
         $this->sessionStorage = $sessionStorage;
         $this->translator = $translator;
         $this->security = $security;
-				$this->currentLanguage = $sessionStorage->get('_locale', 'pl');
+		$this->currentLanguage = $sessionStorage->get('_locale', 'pl');
     }
 
     public function getProducts(): array
@@ -55,28 +55,28 @@ class CartService
         $dimensionItem = $this->getDimension($product, $dimensionId);
 
         if(isset($products['products'][$product->getId()])) {
-        		if(isset($products['products'][$product->getId()][$dimensionItem['id']])){
-								$products['products'][$product->getId()][$dimensionItem['id']]['quantity'] += $quantity;
-						} else {
-								$products['products'][$product->getId()][$dimensionItem['id']] = [
-										'id' => $product->getId(),
-										'quantity' => $quantity,
-								];
-						}
+			if(isset($products['products'][$product->getId()][$dimensionItem['id']])){
+				$products['products'][$product->getId()][$dimensionItem['id']]['quantity'] += $quantity;
+			} else {
+				$products['products'][$product->getId()][$dimensionItem['id']] = [
+					'id' => $product->getId(),
+					'quantity' => $quantity,
+				];
+			}
         } else {
-						$products['products'][$product->getId()][$dimensionItem['id']] = [
-								'id' => $product->getId(),
-								'quantity' => $quantity,
-								'price' => $dimensionItem['price'],
-						];
-				}
+			$products['products'][$product->getId()][$dimensionItem['id']] = [
+				'id' => $product->getId(),
+				'quantity' => $quantity,
+				'price' => $dimensionItem['price'],
+			];
+		}
 
         $products['quantity'] = 0;
 
         foreach ($products['products'] as $dimensions) {
-						foreach ($dimensions as $dimensionId => $product) {
-								$products['quantity'] += $product['quantity'];
-						}
+			foreach ($dimensions as $dimensionId => $product) {
+				$products['quantity'] += $product['quantity'];
+			}
         }
 
         $this->save($products);

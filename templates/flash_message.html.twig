@@ -26,7 +26,7 @@
                     <img src="{{ asset('custom/img/items/022-cancel.svg') }}" alt="">
                 </div>
             </div>
-            <div class="gratitude__title popup-title">{{ 'popup.gratitude.error'|trans }}</div>
+            <div class="gratitude__title popup-title">{% if flashMessage %}{{ flashMessage }}{% else %}{{ 'popup.gratitude.error'|trans }}{% endif %}</div>
         </div>
     </div>
     <script>

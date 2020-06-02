@@ -6,6 +6,7 @@ use App\Entity\Admin\Order;
 use App\Enum\OrderEnum;
 use App\Enum\ProductType;
 use App\Repository\Admin\OrderRepository;
+use App\Service\PayUConnectorService;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,13 +43,30 @@ class OrderController extends AbstractController
 	/**
 	 * @Route("/{id}", name="admin_order_show", methods={"GET"})
 	 */
-	public function show(Order $order): Response
+	public function show(Order $order, PayUConnectorService $payUConnectorService): Response
 	{
+		$em = $this->getDoctrine()->getManager();
+
+		if($order->getPayMethod() == OrderEnum::PAYU && $order->getOrderPayuStatus() != PayUConnectorService::ORDER_STATUS_COMPLETED ) {
+			$result = \OpenPayU_Order::retrieve($order->getOrderPayuId());
+			$orderStatus = $result->getResponse()->orders[0]->status;
+			$order->setOrderPayuStatus($orderStatus);
+			$em->persist($order);
+			$em->flush();
+		}
+
+		if ($order->getShowed() == Order::NO) {
+			$order->setShowed(Order::YES);
+			$em->persist($order);
+			$em->flush();
+		}
+
 		return $this->render('admin/order/show.html.twig', [
 			'order' => $order,
 			'type' => ProductType::getProductTypes(),
 			'deliveryMethod' => OrderEnum::getDeliveryMethods(),
 			'paymentMethod' => OrderEnum::getPaymentMethods(),
+			'orderStatuses' => PayUConnectorService::getStatuses()
 		]);
 	}
 }
