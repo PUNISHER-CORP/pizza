@@ -12,8 +12,7 @@ body {
   font-family: "Montserrat-Regular";
   color: #fff;
   background-image: url("../img/background.jpg");
-  background-repeat: repeat-y;
-  background-size: 100% 100%;
+  background-size: auto;
 }
 
 a {
