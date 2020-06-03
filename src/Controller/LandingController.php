@@ -38,7 +38,7 @@ class LandingController extends AbstractCrudController
 
 	/**
 	 * Pizza landing
-     * @Route("/pizza", name="pizza_index", host="pizza.home.slupsk.pl")
+     * @Route("/", name="pizza_index", host="pizza.home.slupsk.pl")
      */
     public function index(Request $request): Response
     {
