@@ -69,4 +69,18 @@ class OrderController extends AbstractController
 			'orderStatuses' => PayUConnectorService::getStatuses()
 		]);
 	}
+
+	/**
+     * @Route("/{id}", name="admin_order_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Order $order): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$order->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($order);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('admin_order_index');
+    }
 }

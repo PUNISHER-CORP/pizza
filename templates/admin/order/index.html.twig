@@ -38,6 +38,7 @@
                                 <td>{{ order.totalPrice }} zł</td>
                                 <td>
                                     <a href="{{ path('admin_order_show', {'id': order.id}) }}" class="btn btn-success">{{ 'global.show'|trans }}</a>
+                                    {{ include('admin/order/_delete_form.html.twig') }}
                                 </td>
                             </tr>
                         {% else %}
